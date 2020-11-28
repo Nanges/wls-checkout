@@ -1,20 +1,11 @@
-
-<mat-form-field class="w-100 mb-50">
-    <input matInput type="text" placeholder="PoV name" />
-</mat-form-field>
-<!-- <mat-form-field appearance="legacy">
-    <mat-label>Legacy form field</mat-label>
-    <input matInput placeholder="Placeholder">
-    <mat-hint>Hint</mat-hint>
-</mat-form-field> -->
-
 <div class="container">
     <mat-card *ngIf="!(isMobile$ | async)">
-        <mat-horizontal-stepper [linear]="true">
-            <mat-step label="Destination & type de tour">
+        <mat-horizontal-stepper linear>
+            <mat-step label="Destination & type de tour" [stepControl]="contactForm">
+                <app-contact-form></app-contact-form>
             </mat-step>
             <mat-step label="Information de contact">
-                B
+                <app-contact-form></app-contact-form>
             </mat-step>
             <mat-step label="Votre voyage">
                 C
@@ -28,19 +19,18 @@
             </ng-template>
         </mat-horizontal-stepper>
     </mat-card>
-    
-    <mat-vertical-stepper [linear]="true" *ngIf="isMobile$ | async">
-        <mat-step label="Destination & type de tour">
-            A
-        </mat-step>
-        <mat-step label="Information de contact">
-            B
-        </mat-step>
-        <mat-step label="Votre voyage">
-            C
-        </mat-step>
-        <mat-step label="Confirmation">
-            C
-        </mat-step>
-    </mat-vertical-stepper>
 </div>
+<mat-vertical-stepper linear *ngIf="isMobile$ | async">
+    <mat-step label="Destination & type de tour" [stepControl]="contactForm">
+        <app-contact-form></app-contact-form>
+    </mat-step>
+    <mat-step label="Information de contact">
+        <app-contact-form></app-contact-form>
+    </mat-step>
+    <mat-step label="Votre voyage">
+        C
+    </mat-step>
+    <mat-step label="Confirmation">
+        C
+    </mat-step>
+</mat-vertical-stepper>

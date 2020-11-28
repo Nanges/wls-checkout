@@ -12,7 +12,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $lio-checkout-primary: mat-palette($mat-orange, A400, A100, A700);
-$lio-checkout-accent: mat-palette($mat-pink, A200, A100, A400);
+$lio-checkout-accent: mat-palette($mat-teal, 500, 700, 900);
 
 // The warn palette is optional (defaults to red).
 $lio-checkout-warn: mat-palette($mat-red);
@@ -48,4 +48,32 @@ body {
 .container {
     width: 1100px;
     margin: auto;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.app-required::after {
+    content: '*';
+    margin-left: 0.3rem;
+}
+
+.form-row {
+    margin-left: -16px;
+    margin-right: -16px;
+}
+
+.form-cell {
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-bottom: 1rem;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 1rem;
+}
+
+label ~ .mat-radio-group {
+    margin-left: 2rem;
 }
