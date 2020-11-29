@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { FormService } from 'src/app/form.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -9,7 +8,8 @@ import { FormService } from 'src/app/form.service';
 })
 export class ContactFormComponent {
 
-    readonly form: FormGroup;
+    @Input()
+    form: FormGroup;
 
     get firstName(){
         return this.form.get('firstName') as FormControl;
@@ -44,14 +44,12 @@ export class ContactFormComponent {
     }
 
     readonly countries: string[];
-    readonly adultNumberOptions: string[];
-    readonly childrenNumberOptions: string[];
+    readonly adultNumberOptions: (number|string)[];
+    readonly childrenNumberOptions: (number|string)[];
 
-    constructor(formService: FormService) {
-        this.form = formService.form.get('contact') as FormGroup;
+    constructor() {
         this.countries = Array.from({length: 200}).map((_, i) => `Item #${i}`);
-        this.adultNumberOptions = [...Array.from({length: 9}).map((_, i) => `${i + 1}`), '> 10'];
-        this.childrenNumberOptions = [...Array.from({length: 10}).map((_, i) => `${i}`), '> 10'];
+        this.adultNumberOptions = [...Array.from({length: 9}).map((_, i) => i + 1), '> 10'];
+        this.childrenNumberOptions = [...Array.from({length: 10}).map((_, i) => i), '> 10'];
     }
-
 }

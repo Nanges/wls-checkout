@@ -77,3 +77,19 @@ body {
 label ~ .mat-radio-group {
     margin-left: 2rem;
 }
+
+.d-flex {
+    display: flex;
+}
+
+.flex-end {
+    justify-content: flex-end;
+}
+
+.flex-start {
+    justify-content: flex-end;
+}
+
+.space-between {
+    justify-content: space-between;
+}

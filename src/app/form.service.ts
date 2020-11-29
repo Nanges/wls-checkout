@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map, tap } from 'rxjs/operators';
-
-
+import { ContactForm } from './models';
+import { FormGroupConfig } from './utils/types';
 
 @Injectable({
     providedIn: 'root'
@@ -24,16 +24,18 @@ export class FormService {
     }
 
     private createContactForm(){
-        const form =  this.fb.group({
+        const config: FormGroupConfig<ContactForm> = {
             firstName: [null, Validators.required],
             lastName: [null, Validators.required],
             country: [null, Validators.required],
             mobile: [null, Validators.required],
             email: [null, [Validators.email, Validators.required]],
-            adultNumber:['1', Validators.required],
-            childrenNumber:['0', Validators.required],
+            adultNumber:[1, Validators.required],
+            childrenNumber:[0, Validators.required],
             has4YearsKids:[{value: false, disabled: true}, Validators.required]
-        });
+        }
+
+        const form =  this.fb.group(config);
 
         const has4YearsKids = form.get('has4YearsKids');
 

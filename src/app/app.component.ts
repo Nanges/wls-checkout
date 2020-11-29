@@ -12,9 +12,10 @@ import { FormService } from './form.service';
 })
 export class AppComponent {
     readonly isMobile$: Observable<any>;
+    readonly form: FormGroup;
 
     get contactForm(){
-        return this.formService.form.get('contact') as FormGroup;
+        return this.form.get('contact') as FormGroup;
     }
 
     /**
@@ -22,5 +23,6 @@ export class AppComponent {
      */
     constructor(private observer: MediaObserver, private formService: FormService) {
         this.isMobile$ = observer.asObservable().pipe(map(() => observer.isActive('lt-md')));
+        this.form = this.formService.form;
     }
 }

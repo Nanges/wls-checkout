@@ -1,36 +1,44 @@
-<div class="container">
-    <mat-card *ngIf="!(isMobile$ | async)">
-        <mat-horizontal-stepper linear>
-            <mat-step label="Destination & type de tour" [stepControl]="contactForm">
-                <app-contact-form></app-contact-form>
-            </mat-step>
-            <mat-step label="Information de contact">
-                <app-contact-form></app-contact-form>
-            </mat-step>
-            <mat-step label="Votre voyage">
-                C
-            </mat-step>
-            <mat-step label="Confirmation">
-                C
-            </mat-step>
-            <!---->
-            <ng-template matStepperIcon="local_airport">
-                <mat-icon>local_airport</mat-icon>
-            </ng-template>
-        </mat-horizontal-stepper>
-    </mat-card>
-</div>
-<mat-vertical-stepper linear *ngIf="isMobile$ | async">
-    <mat-step label="Destination & type de tour" [stepControl]="contactForm">
-        <app-contact-form></app-contact-form>
-    </mat-step>
-    <mat-step label="Information de contact">
-        <app-contact-form></app-contact-form>
-    </mat-step>
-    <mat-step label="Votre voyage">
-        C
-    </mat-step>
-    <mat-step label="Confirmation">
-        C
-    </mat-step>
-</mat-vertical-stepper>
+<form [formGroup]="form">
+    <div class="container">
+        <mat-card *ngIf="!(isMobile$ | async)">
+            <mat-horizontal-stepper linear>
+                <mat-step label="Destination & type de tour">
+                    
+                    <div class="d-flex flex-end">
+                        <button mat-raised-button color="primary" type="button" matStepperNext>Next</button>
+                    </div>
+                </mat-step>
+                <mat-step label="Information de contact" [stepControl]="contactForm">
+                    <app-contact-form [form]="contactForm"></app-contact-form>
+                    <div class="d-flex space-between">
+                        <button mat-button type="button" color="accent" matStepperPrevious>Back</button>
+                        <button mat-raised-button color="primary" type="button" [disabled]="contactForm.invalid" matStepperNext>Next</button>
+                    </div>
+                </mat-step>
+                <mat-step label="Votre voyage">
+                    <div class="d-flex space-between">
+                        <button mat-raised-button color="primary" type="button" [disabled]="contactForm.invalid" matStepperNext>Next</button>
+                    </div>
+                </mat-step>
+                <mat-step label="Confirmation">
+                    <div class="d-flex space-between">
+                        <button mat-raised-button color="primary" type="button" [disabled]="contactForm.invalid" matStepperNext>Next</button>
+                    </div>
+                </mat-step>
+            </mat-horizontal-stepper>
+        </mat-card>
+    </div>
+    <mat-vertical-stepper linear *ngIf="isMobile$ | async">
+        <mat-step label="Destination & type de tour" [stepControl]="contactForm">
+            <app-contact-form [form]="contactForm"></app-contact-form>
+        </mat-step>
+        <mat-step label="Information de contact">
+        </mat-step>
+        <mat-step label="Votre voyage">
+            C
+        </mat-step>
+        <mat-step label="Confirmation">
+            C
+        </mat-step>
+    </mat-vertical-stepper>
+</form>
