@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Settings } from 'src/app/models/settings';
 
 @Component({
   selector: 'app-tour-form',
@@ -11,11 +12,17 @@ export class TourFormComponent {
     @Input()
     form: FormGroup;
 
-    disabled = true;
-
-    constructor() { }
-
-    click(){
-        this.disabled = !this.disabled;
+    get attendants(){
+        return this.settings.data.attendants;
     }
+
+    get types(){
+        return this.settings.data.types;
+    }
+
+    get destinations(){
+        return this.settings.data.destinations;
+    }
+
+    constructor(private settings: Settings) {}
 }

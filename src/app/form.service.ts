@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map, tap } from 'rxjs/operators';
+import { GUIDED_TOUR } from './constants';
 
 @Injectable({
     providedIn: 'root'
@@ -21,17 +22,19 @@ export class FormService {
     }
 
     private createTourForm(){
-        // const config {
-        //     destination: [null, Validators.required],
-        //     type: [null, Validators.required],
-        //     attendant: this.fb.array([false]),
 
-        // }
+        const type = new FormControl(null, Validators.required);
+        const attendants = new FormControl({value:['guide'], disabled: true}, Validators.required);
+
+        type.valueChanges.pipe(
+            tap((v) => v === GUIDED_TOUR ? attendants.enable() : attendants.disable())
+        ).subscribe();
 
         return this.fb.group({
-            attendants: [['a','d'], Validators.required],
-            attendants2: [['b'], Validators.required]
-        })
+            destinations:[null, Validators.required],
+            type,
+            attendants,
+        });
     }
 
     private createContactForm(){
@@ -51,7 +54,7 @@ export class FormService {
         form.get('childrenNumber')?.valueChanges.pipe(
             map(v => isNaN(+v) || v > 0 ? true : false),
             tap(e => e ? has4YearsKids?.enable() : has4YearsKids?.disable())
-        ).subscribe(console.log);
+        ).subscribe();
 
         return form;
     }

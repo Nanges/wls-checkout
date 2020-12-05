@@ -31,6 +31,7 @@ export class MultiCheckboxesDirective implements ControlValueAccessor {
     constructor() {}
 
     writeValue(values: any[]): void {
+        values = values || [];
         if(this.checkboxes){
             this.checkboxes.forEach(c => c.writeValue(values));
         }

@@ -1,3 +1,5 @@
+@import 'sass/bootstrap';
+
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
@@ -50,10 +52,6 @@ body {
     margin: auto;
 }
 
-.w-100 {
-    width: 100%;
-}
-
 .app-required::after {
     content: '*';
     margin-left: 0.3rem;
@@ -70,26 +68,9 @@ body {
     margin-bottom: 1rem;
 }
 
-.mat-radio-button ~ .mat-radio-button {
-    margin-left: 1rem;
-}
-
-label ~ .mat-radio-group {
-    margin-left: 2rem;
-}
-
-.d-flex {
-    display: flex;
-}
-
-.flex-end {
-    justify-content: flex-end;
-}
-
-.flex-start {
-    justify-content: flex-end;
-}
-
-.space-between {
-    justify-content: space-between;
+.app-label {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: block;
 }

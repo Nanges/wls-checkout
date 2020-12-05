@@ -67,9 +67,9 @@
     <div fxLayout="row wrap" class="form-row">
         <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50">
             <label>Children less than 4 years :</label>
-            <mat-radio-group aria-label="Select an option" [formControl]="has4YearsKids">
-                <mat-radio-button [value]="true">Yes</mat-radio-button>
-                <mat-radio-button [value]="false">No</mat-radio-button>
+            <mat-radio-group class="app-inline-radio" aria-label="Select an option" [formControl]="has4YearsKids">
+                <mat-radio-button [value]="true" class="ml-100">Yes</mat-radio-button>
+                <mat-radio-button [value]="false" class="ml-100">No</mat-radio-button>
             </mat-radio-group>
         </div>
     </div>

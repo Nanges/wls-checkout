@@ -1,18 +1,26 @@
-<ng-container [formGroup]="form">
-    <div formControlName='attendants' appMultiCheckboxes>
-        <mat-checkbox value="a" appCheckboxItem>Check me!</mat-checkbox>
-        <mat-checkbox value="b" appCheckboxItem>Check me!</mat-checkbox>
-        <mat-checkbox value="c" *ngIf="disabled" appCheckboxItem>Check me!</mat-checkbox>
-        <input type="checkbox" value="d" appCheckboxItem *ngIf="disabled"/>
+<div [formGroup]="form" class="mt-50">
+    <div fxLayout="row wrap" class="form-row">
+        <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50" formControlName='destinations' appMultiCheckboxes>
+            <label class="app-label">Destinations</label>
+            <mat-checkbox *ngFor="let destination of destinations" 
+                appCheckboxItem
+                class="d-block mb-50"
+                [value]="destination.value">{{ destination.label }}</mat-checkbox>
+        </div>
     </div>
-    <mat-form-field>
-        <mat-label>Toppings</mat-label>
-        <mat-select formControlName='attendants2' multiple> 
-            <mat-option  value="a">a</mat-option>
-            <mat-option  value="b" *ngIf="disabled">b</mat-option>
-            <mat-option  value="c">c</mat-option>
-        </mat-select>    
-    </mat-form-field>
-    <button type='button' (click)="click()">D</button>
-    <pre>{{ form.value | json }}</pre>
-</ng-container>
+    <div fxLayout="row wrap" class="form-row">
+        <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50" appMultiCheckboxes>
+            <label class="app-label">Type de tour</label>
+            <mat-radio-group aria-label="Type de tour" formControlName='type'>
+                <mat-radio-button *ngFor="let type of types" [value]="type.value" class="d-block mb-50">{{ type.label }}</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50" formControlName='attendants' appMultiCheckboxes>
+            <label class="app-label">Accompagnateurs</label>
+            <mat-checkbox *ngFor="let attendant of attendants" 
+                appCheckboxItem
+                class="d-block mb-50"
+                [value]="attendant.value">{{ attendant.label }}</mat-checkbox>
+        </div>
+    </div>
+</div>

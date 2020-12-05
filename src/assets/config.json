@@ -1,0 +1,54 @@
+{
+    "data":{
+        "destinations":[
+            { 
+                "value": "south-namibia",
+                "label": "Sud Namibie"
+            },
+            { 
+                "value": "central-northwestern-namibia",
+                "label": "Centre et Nord-Ouest Namibie"
+            },
+            { 
+                "value": "northeast-namibia",
+                "label": "Nord-Est Namibie"
+            },
+            { 
+                "value": "botswana",
+                "label": "Botswana"
+            },
+            { 
+                "value": "zimbabwe",
+                "label": "Zimbabwe"
+            }
+        ],
+        "types":[
+            { 
+                "value": "self-drive",
+                "label": "Autotour"
+            },
+            { 
+                "value": "guided-tour",
+                "label": "Tour guidé"
+            },
+            { 
+                "value": "group",
+                "label": "Tour en groupe"
+            }
+        ],
+        "attendants" :[
+            { 
+                "value": "guide",
+                "label": "Guide"
+            },
+            { 
+                "value": "driver",
+                "label": "Driver"
+            },
+            { 
+                "value": "aide-de-camp",
+                "label": "Aide de camp"
+            }
+        ]
+    }
+}
