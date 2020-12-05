@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, LOCALE_ID } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { Settings } from './models/settings';
 
@@ -12,10 +12,13 @@ export class InitService {
         return () => appInit.init();
     }
 
-    constructor(private http: HttpClient) {}
+    constructor(
+        @Inject(LOCALE_ID) private localeId:string,
+        private http: HttpClient
+    ) {}
 
     init(){
-        return this.http.get('./assets/config.json').pipe(
+        return this.http.get(`./assets/config.json?locale=${this.localeId}`).pipe(
             tap(s => {
                 this._settings = Object.assign(new Settings(), s);
             })
