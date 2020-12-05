@@ -1,11 +1,11 @@
 <form [formGroup]="form">
     <div class="container">
         <mat-card *ngIf="!(isMobile$ | async)">
-            <mat-horizontal-stepper linear>
-                <mat-step label="Destination & type de tour">
-                    
+            <mat-horizontal-stepper linear [selectedIndex]="0">
+                <mat-step label="Destination & type de tour" [stepControl]="tourForm">
+                    <app-tour-form [form]="tourForm"></app-tour-form>
                     <div class="d-flex flex-end">
-                        <button mat-raised-button color="primary" type="button" matStepperNext>Next</button>
+                        <button mat-raised-button color="primary" type="button" [disabled]="tourForm.invalid" matStepperNext>Next</button>
                     </div>
                 </mat-step>
                 <mat-step label="Information de contact" [stepControl]="contactForm">
@@ -28,11 +28,15 @@
             </mat-horizontal-stepper>
         </mat-card>
     </div>
-    <mat-vertical-stepper linear *ngIf="isMobile$ | async">
-        <mat-step label="Destination & type de tour" [stepControl]="contactForm">
-            <app-contact-form [form]="contactForm"></app-contact-form>
+    <mat-vertical-stepper linear *ngIf="isMobile$ | async" [selectedIndex]="1">
+        <mat-step label="Destination & type de tour" [stepControl]="tourForm">
+            <app-tour-form [form]="tourForm"></app-tour-form>
         </mat-step>
-        <mat-step label="Information de contact">
+        <mat-step label="Information de contact" [stepControl]="contactForm">
+            <app-contact-form [form]="contactForm"></app-contact-form>
+            <div>
+                <button mat-raised-button color="primary" type="button" [disabled]="contactForm.invalid" matStepperNext>Next</button>
+            </div>
         </mat-step>
         <mat-step label="Votre voyage">
             C

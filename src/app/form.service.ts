@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map, tap } from 'rxjs/operators';
-import { ContactForm } from './models';
-import { FormGroupConfig } from './utils/types';
 
 @Injectable({
     providedIn: 'root'
@@ -16,15 +14,28 @@ export class FormService {
     }
 
     private createForm(){
-        const contact = this.createContactForm();
-
         return this.fb.group({
-            contact
+            tour: this.createTourForm(),
+            contact: this.createContactForm()
         });
     }
 
+    private createTourForm(){
+        // const config {
+        //     destination: [null, Validators.required],
+        //     type: [null, Validators.required],
+        //     attendant: this.fb.array([false]),
+
+        // }
+
+        return this.fb.group({
+            attendants: [['a','d'], Validators.required],
+            attendants2: [['b'], Validators.required]
+        })
+    }
+
     private createContactForm(){
-        const config: FormGroupConfig<ContactForm> = {
+        const form =  this.fb.group({
             firstName: [null, Validators.required],
             lastName: [null, Validators.required],
             country: [null, Validators.required],
@@ -33,9 +44,7 @@ export class FormService {
             adultNumber:[1, Validators.required],
             childrenNumber:[0, Validators.required],
             has4YearsKids:[{value: false, disabled: true}, Validators.required]
-        }
-
-        const form =  this.fb.group(config);
+        });
 
         const has4YearsKids = form.get('has4YearsKids');
 
@@ -45,5 +54,12 @@ export class FormService {
         ).subscribe(console.log);
 
         return form;
+    }
+
+    private minChecked(min:number) {
+        return (arr: FormArray) => {
+            const checked = arr.value as boolean[];
+            return checked.filter(b => b).length >= min ? null : { minChecked: true }
+        }
     }
 }

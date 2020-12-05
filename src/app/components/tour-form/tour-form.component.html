@@ -1,1 +1,18 @@
-
+<ng-container [formGroup]="form">
+    <div formControlName='attendants' appMultiCheckboxes>
+        <mat-checkbox value="a" appCheckboxItem>Check me!</mat-checkbox>
+        <mat-checkbox value="b" appCheckboxItem>Check me!</mat-checkbox>
+        <mat-checkbox value="c" *ngIf="disabled" appCheckboxItem>Check me!</mat-checkbox>
+        <input type="checkbox" value="d" appCheckboxItem *ngIf="disabled"/>
+    </div>
+    <mat-form-field>
+        <mat-label>Toppings</mat-label>
+        <mat-select formControlName='attendants2' multiple> 
+            <mat-option  value="a">a</mat-option>
+            <mat-option  value="b" *ngIf="disabled">b</mat-option>
+            <mat-option  value="c">c</mat-option>
+        </mat-select>    
+    </mat-form-field>
+    <button type='button' (click)="click()">D</button>
+    <pre>{{ form.value | json }}</pre>
+</ng-container>

@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-tour-form',
   templateUrl: './tour-form.component.html',
   styleUrls: ['./tour-form.component.scss']
 })
-export class TourFormComponent implements OnInit {
+export class TourFormComponent {
 
-  constructor() { }
+    @Input()
+    form: FormGroup;
 
-  ngOnInit(): void {
-  }
+    disabled = true;
 
+    constructor() { }
+
+    click(){
+        this.disabled = !this.disabled;
+    }
 }

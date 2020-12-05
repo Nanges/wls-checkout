@@ -18,6 +18,10 @@ export class AppComponent {
         return this.form.get('contact') as FormGroup;
     }
 
+    get tourForm(){
+        return this.form.get('tour') as FormGroup;
+    }
+
     /**
      *
      */
