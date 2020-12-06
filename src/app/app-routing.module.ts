@@ -1,7 +1,15 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { WizardComponent } from './components/wizard/wizard.component';
+import { QueryFormResolver } from './resolvers/query-form.resolver';
 
-const routes: Routes = [];
+const routes: Routes = [
+    {
+        path:'**',
+        resolve: [QueryFormResolver],
+        component: WizardComponent
+    }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

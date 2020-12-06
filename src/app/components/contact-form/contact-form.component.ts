@@ -61,12 +61,10 @@ export class ContactFormComponent {
         return this._countries$;
     }
 
-    readonly countries: string[];
     readonly adultNumberOptions: (number|string)[];
     readonly childrenNumberOptions: (number|string)[];
 
     constructor(private settings: Settings) {
-        this.countries = Array.from({length: 200}).map((_, i) => `Item #${i}`);
         this.adultNumberOptions = [...Array.from({length: 9}).map((_, i) => i + 1), '> 10'];
         this.childrenNumberOptions = [...Array.from({length: 10}).map((_, i) => i), '> 10'];
     }
@@ -74,11 +72,18 @@ export class ContactFormComponent {
     private getCountriesObservable(): Observable<LabelledValue[]>{
         return this.country.valueChanges.pipe(
             startWith(''),
-            map((v:string) => 
-                this.settings.data.countries
-                    .filter(c => c.label.toLowerCase().indexOf(v.toLowerCase()) === 0 )
-                    .slice(0, 5)
+            map( v => typeof v === 'string' ? v : v.label),
+            map((v:string) => this.filterCountries(v)
         ));
+    }
+
+    private filterCountries(label: string){
+        const filterLabel = label.toLowerCase();
+        return this.settings.data.countries
+            .filter(option => option.label
+                .toLowerCase()
+                .indexOf(filterLabel) === 0)
+            .slice(0, 5);
     }
 
     displayFn(country: LabelledValue): string {

@@ -12,8 +12,10 @@ import { TourFormComponent } from './components/tour-form/tour-form.component';
 import { RequiredDirective } from './directives/required.directive';
 import { InitService } from './init.service';
 import { Settings } from './models/settings';
+import { QueryFormResolver } from './resolvers/query-form.resolver';
 import { MaterialModule } from './shared/material/material.module';
 import { MultiCheckboxesModule } from './shared/multi-checkboxes/multi-checkboxes.module';
+import { WizardComponent } from './components/wizard/wizard.component';
 
 @NgModule({
     declarations: [
@@ -21,6 +23,7 @@ import { MultiCheckboxesModule } from './shared/multi-checkboxes/multi-checkboxe
         ContactFormComponent,
         TourFormComponent,
         RequiredDirective,
+        WizardComponent,
     ],
     imports: [
         BrowserModule,
@@ -34,6 +37,7 @@ import { MultiCheckboxesModule } from './shared/multi-checkboxes/multi-checkboxe
         HttpClientModule
     ],
     providers: [
+        QueryFormResolver,
         {
             provide: APP_INITIALIZER,
             useFactory: InitService.initFactory,
