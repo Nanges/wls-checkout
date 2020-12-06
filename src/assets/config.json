@@ -49,28 +49,6 @@
                 "value": "aide-de-camp",
                 "label": "Aide de camp"
             }
-        ],
-        "countries": [
-            {
-                "value":"be",
-                "label":"Belgium"
-            },
-            {
-                "value":"de",
-                "label":"Germany"
-            },
-            {
-                "value":"fr",
-                "label":"France"
-            },
-            {
-                "value":"nl",
-                "label":"Netherland"
-            },
-            {
-                "value":"uk",
-                "label":"United Kingdom"
-            }
         ]
     }
 }
