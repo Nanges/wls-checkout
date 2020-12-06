@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, ParamMap, Resolve, RouterStateSnapshot } from '@angular/router';
 import { FormService } from '../form.service';
 
 @Injectable()
@@ -13,8 +13,14 @@ export class QueryFormResolver implements Resolve<any> {
     }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const destinations = route.queryParamMap.get('destinations').split(',');
-        this.formService.form.get('tour.destinations').setValue(destinations, { emitEvent: false });
+        this.resolveDestionations(route.queryParamMap)
         return;
+    }
+
+    private resolveDestionations(map: ParamMap){
+        const destinations = map.get('destinations');
+        if(destinations){
+            this.formService.form.get('tour.destinations').setValue(destinations.split(','), { emitEvent: false });
+        }
     }
 }
