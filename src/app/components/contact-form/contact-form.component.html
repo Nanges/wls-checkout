@@ -19,10 +19,12 @@
         <div class="form-cell" fxFlex="100" fxFlex.gt-xs="66">
             <mat-form-field class="w-100">
                 <mat-label appRequired>Country</mat-label>
-                <mat-select [formControl]="country">
-                    <mat-option>--</mat-option>
-                    <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
-                </mat-select>
+                <input matInput [formControl]="country" [matAutocomplete]="auto" autocomplete="wls-countries"/>
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let option of countires$ | async" [value]="option">
+                      {{option.label}}
+                    </mat-option>
+                </mat-autocomplete>
                 <mat-error *ngIf="country.hasError('required')">Country is <strong>required</strong></mat-error>
             </mat-form-field>
         </div>
@@ -73,4 +75,5 @@
             </mat-radio-group>
         </div>
     </div>
+    <pre>{{ form.value | json }}</pre>
 </ng-container>

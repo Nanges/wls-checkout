@@ -7,6 +7,7 @@ export interface Data{
     destinations: LabelledValue[];
     types: LabelledValue[];
     attendants:LabelledValue[];
+    countries: LabelledValue[];
 }
 
 export class Settings {
