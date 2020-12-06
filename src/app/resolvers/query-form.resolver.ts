@@ -18,9 +18,7 @@ export class QueryFormResolver implements Resolve<any> {
     }
 
     private resolveDestionations(map: ParamMap){
-        const destinations = map.get('destinations');
-        if(destinations){
-            this.formService.form.get('tour.destinations').setValue(destinations.split(','), { emitEvent: false });
-        }
+        const destinations = map.get('destinations')?.split(',');
+        this.formService.form.get('tour.destinations').setValue(destinations, { emitEvent: false });
     }
 }
