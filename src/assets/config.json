@@ -67,6 +67,56 @@
                 "value": "unusual-places",
                 "label": "Lieux et paysages insolites"
             }
+        ],
+        "hostingTypes": [
+            {
+                "value": "camping",
+                "label": "Camping"
+            },
+            {
+                "value": "camping-guesthouse-lodge",
+                "label": "Combinaison Camping, Guesthouse et Lodge"
+            },
+            {
+                "value": "guesthouse-lodge",
+                "label": "Guesthouse et Lodge"
+            },
+            {
+                "value": "luxury-lodge",
+                "label": "Lodge de luxe"
+            }
+        ],
+        "meals": [
+            {
+                "value": "non-included",
+                "label": "Repas non inclus"
+            },
+            {
+                "value": "breakfast",
+                "label": "Petit déjeuner"
+            },
+            {
+                "value": "demi-pension",
+                "label": "Petit-déjeuner et diner (demi-pension)"
+            },
+            {
+                "value": "full-pension",
+                "label": "Petit-déjeuner, lunch et diner (pension complète)"
+            }
+        ],
+        "vehicles": [
+            {
+                "value": "4x4-no-camping-equipment",
+                "label": "4x4 non équipé camping"
+            },
+            {
+                "value": "4x4-camping-equipment",
+                "label": "4x4 équipé camping"
+            },
+            {
+                "value": "suv",
+                "label": "SUV"
+            }
         ]
     }
 }

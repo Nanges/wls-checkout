@@ -81,7 +81,6 @@ export class FormService {
             safariExperiment: this.fb.array(
                 this.safariExperiments.map(() => [null, Validators.required])
             ),
-            safariExperiment2: [[this.safariExperiments[0]], Validators.required],
             travelDescription:[null]
         });
     }

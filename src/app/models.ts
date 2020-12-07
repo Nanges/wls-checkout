@@ -13,19 +13,6 @@ export interface Attendant {
     checked?: boolean;
 }
 
-export const ATTENDANTS:Attendant[] = [
-    {
-        id: 'guide',
-        checked: true,
-    },
-    {
-        id:'driver'
-    },
-    {
-        id:'aide-de-camp'
-    }
-];
-
 export interface TourForm {
     destination: string;
     type: string;

@@ -13,6 +13,9 @@ export interface Data{
     attendants:LabelledValue[];
     countries: LabelledValue[];
     safariExperiments: LabelledValue[];
+    hostingTypes: LabelledValue[];
+    meals: LabelledValue[];
+    vehicles: LabelledValue[];
 }
 
 export class Settings {

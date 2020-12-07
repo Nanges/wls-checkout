@@ -20,7 +20,7 @@
             <mat-form-field class="w-100">
                 <mat-label appRequired>Country</mat-label>
                 <input matInput [formControl]="country" [matAutocomplete]="auto" autocomplete="wls-countries"/>
-                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
                     <mat-option *ngFor="let option of countires$ | async" [value]="option">
                       {{option.label}}
                     </mat-option>
