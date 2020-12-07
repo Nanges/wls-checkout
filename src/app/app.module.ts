@@ -16,6 +16,7 @@ import { QueryFormResolver } from './resolvers/query-form.resolver';
 import { MaterialModule } from './shared/material/material.module';
 import { MultiCheckboxesModule } from './shared/multi-checkboxes/multi-checkboxes.module';
 import { WizardComponent } from './components/wizard/wizard.component';
+import { TravelFormComponent } from './components/travel-form/travel-form.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { WizardComponent } from './components/wizard/wizard.component';
         TourFormComponent,
         RequiredDirective,
         WizardComponent,
+        TravelFormComponent,
     ],
     imports: [
         BrowserModule,

@@ -1,7 +1,7 @@
 <form [formGroup]="form">
     <div class="container">
         <mat-card *ngIf="!(isMobile$ | async)">
-            <mat-horizontal-stepper linear [selectedIndex]="0">
+            <mat-horizontal-stepper linear>
                 <mat-step label="Destination & type de tour" [stepControl]="tourForm">
                     <app-tour-form [form]="tourForm"></app-tour-form>
                     <div class="d-flex justify-content-end">
@@ -15,9 +15,11 @@
                         <button mat-raised-button color="primary" type="button" [disabled]="contactForm.invalid" matStepperNext>Next</button>
                     </div>
                 </mat-step>
-                <mat-step label="Votre voyage">
+                <mat-step label="Votre voyage" [stepControl]="travelForm">
+                    <app-travel-form [form]="travelForm"></app-travel-form>
                     <div class="d-flex justify-content-between">
-                        <button mat-raised-button color="primary" type="button" [disabled]="contactForm.invalid" matStepperNext>Next</button>
+                        <button mat-button type="button" color="accent" matStepperPrevious>Back</button>
+                        <button mat-raised-button color="primary" type="button" [disabled]="travelForm.invalid" matStepperNext>Next</button>
                     </div>
                 </mat-step>
                 <mat-step label="Confirmation">
@@ -35,8 +37,8 @@
         <mat-step label="Information de contact" [stepControl]="contactForm">
             <app-contact-form [form]="contactForm"></app-contact-form>
         </mat-step>
-        <mat-step label="Votre voyage">
-            C
+        <mat-step label="Votre voyage" [stepControl]="travelForm">
+            <app-travel-form [form]="travelForm"></app-travel-form>
         </mat-step>
         <mat-step label="Confirmation">
             C

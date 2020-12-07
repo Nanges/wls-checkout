@@ -49,6 +49,24 @@
                 "value": "aide-de-camp",
                 "label": "Aide de camp"
             }
+        ],
+        "safariExperiments" :[
+            {
+                "value": "animal-observation",
+                "label": "Observation animalière"
+            },
+            {
+                "value": "specific-activities",
+                "label": "Activités spécifiques"
+            },
+            {
+                "value": "meet-people",
+                "label": "Rencontre des peuples et des cultures"
+            },
+            {
+                "value": "unusual-places",
+                "label": "Lieux et paysages insolites"
+            }
         ]
     }
 }

@@ -26,6 +26,7 @@
                     </mat-option>
                 </mat-autocomplete>
                 <mat-error *ngIf="country.hasError('required')">Country is <strong>required</strong></mat-error>
+                <mat-error *ngIf="country.hasError('country')">Please <strong>select</strong> a country in the list</mat-error>
             </mat-form-field>
         </div>
     </div>

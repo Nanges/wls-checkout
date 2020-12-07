@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map, tap } from 'rxjs/operators';
-import { GUIDED_TOUR } from './constants';
+import { CAMPING, GUIDED_TOUR } from './constants';
+import { Settings } from './models/settings';
 
 @Injectable({
     providedIn: 'root'
@@ -10,14 +11,19 @@ export class FormService {
 
     readonly form: FormGroup;
 
-    constructor(private fb: FormBuilder) { 
+    constructor(private fb: FormBuilder, private settings: Settings) { 
         this.form = this.createForm();
+    }
+
+    private get safariExperiments(){
+        return this.settings.data.safariExperiments;
     }
 
     private createForm(){
         return this.fb.group({
             tour: this.createTourForm(),
-            contact: this.createContactForm()
+            contact: this.createContactForm(),
+            travel: this.createTravelForm()
         });
     }
 
@@ -41,7 +47,7 @@ export class FormService {
         const form =  this.fb.group({
             firstName: [null, Validators.required],
             lastName: [null, Validators.required],
-            country: [null, Validators.required],
+            country: [null, [Validators.required, this.validateCountry(this.settings.data.countries)]],
             mobile: [null, Validators.required],
             email: [null, [Validators.email, Validators.required]],
             adultNumber:[1, Validators.required],
@@ -59,10 +65,28 @@ export class FormService {
         return form;
     }
 
-    private minChecked(min:number) {
-        return (arr: FormArray) => {
-            const checked = arr.value as boolean[];
-            return checked.filter(b => b).length >= min ? null : { minChecked: true }
-        }
+    private createTravelForm(){
+        const hostingType = new FormControl(null, Validators.required);
+        const mealType = new FormControl(null, Validators.required);
+
+        hostingType.valueChanges.pipe(
+            tap(v => v === CAMPING ? mealType.disable(): mealType.enable())
+        ).subscribe();
+
+        return this.fb.group({
+            hostingType,
+            mealType,
+            vehicleType: [null, Validators.required],
+            budgetPerPerson: [null, Validators.required],
+            safariExperiment: this.fb.array(
+                this.safariExperiments.map(() => [null, Validators.required])
+            ),
+            safariExperiment2: [[this.safariExperiments[0]], Validators.required],
+            travelDescription:[null]
+        });
+    }
+
+    private validateCountry(countryList: any[]){
+        return (control: AbstractControl) => countryList.includes(control.value) || !control.value ? null : ({ country: true });
     }
 }

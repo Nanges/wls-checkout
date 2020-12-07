@@ -1,0 +1,21 @@
+<ng-container [formGroup]="form">
+    <p>travel-form works!</p>
+    <mat-chip-list aria-label="Fish selection">
+        <mat-chip>One fish</mat-chip>
+        <mat-chip>Two fish</mat-chip>
+        <mat-chip color="primary" selected>Primary fish</mat-chip>
+        <mat-chip color="accent" selected>Accent fish</mat-chip>
+      </mat-chip-list>
+    <div formArrayName="safariExperiment">
+        <label class="app-label">Quelle expérience de safari recherchez-vous ?</label>
+        <mat-form-field *ngFor="let _ of safariExperiments.controls; index as i" class="w-100">
+            <mat-label appRequired>Choix n° {{ i+1 }}</mat-label>
+            <mat-select [formControlName]="i">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let option of safariExperimentOptions$ | async" 
+                    [value]="option.value" 
+                    [disabled]="option.disabled">{{ option.label }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</ng-container>
