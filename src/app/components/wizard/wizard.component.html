@@ -1,7 +1,7 @@
 <form [formGroup]="form">
     <div class="container">
         <mat-card *ngIf="!(isMobile$ | async)">
-            <mat-horizontal-stepper linear [selectedIndex]="2">
+            <mat-horizontal-stepper linear>
                 <mat-step label="Destination & type de tour" [stepControl]="tourForm">
                     <app-tour-form [form]="tourForm"></app-tour-form>
                     <div class="d-flex justify-content-end">
@@ -23,8 +23,9 @@
                     </div>
                 </mat-step>
                 <mat-step label="Confirmation">
-                    <div class="d-flex justify-content-between">
-                        <button mat-raised-button color="primary" type="button" [disabled]="contactForm.invalid" matStepperNext>Next</button>
+                    <pre>{{ form.value | json }}</pre>
+                    <div>
+                        <button mat-raised-button color="primary" class="w-100" type="button" [disabled]="form.invalid" matStepperNext>Confirm</button>
                     </div>
                 </mat-step>
             </mat-horizontal-stepper>
@@ -33,12 +34,23 @@
     <mat-vertical-stepper linear *ngIf="isMobile$ | async">
         <mat-step label="Destination & type de tour" [stepControl]="tourForm">
             <app-tour-form [form]="tourForm"></app-tour-form>
+            <div class="d-flex justify-content-end">
+                <button mat-raised-button color="primary" type="button" [disabled]="tourForm.invalid" matStepperNext>Next</button>
+            </div>
         </mat-step>
         <mat-step label="Information de contact" [stepControl]="contactForm">
             <app-contact-form [form]="contactForm"></app-contact-form>
+            <div class="d-flex justify-content-between">
+                <button mat-button type="button" color="accent" matStepperPrevious>Back</button>
+                <button mat-raised-button color="primary" type="button" [disabled]="travelForm.invalid" matStepperNext>Next</button>
+            </div>
         </mat-step>
         <mat-step label="Votre voyage" [stepControl]="travelForm">
             <app-travel-form [form]="travelForm"></app-travel-form>
+            <div class="d-flex justify-content-between">
+                <button mat-button type="button" color="accent" matStepperPrevious>Back</button>
+                <button mat-raised-button color="primary" type="button" [disabled]="travelForm.invalid" matStepperNext>Next</button>
+            </div>
         </mat-step>
         <mat-step label="Confirmation">
             C

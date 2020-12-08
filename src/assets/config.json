@@ -28,12 +28,12 @@
                 "label": "Autotour"
             },
             { 
-                "value": "guided-tour",
-                "label": "Tour guidé"
-            },
-            { 
                 "value": "group",
                 "label": "Tour en groupe"
+            },
+            { 
+                "value": "guided-tour",
+                "label": "Tour guidé"
             }
         ],
         "attendants" :[
@@ -87,10 +87,6 @@
             }
         ],
         "meals": [
-            {
-                "value": "non-included",
-                "label": "Repas non inclus"
-            },
             {
                 "value": "breakfast",
                 "label": "Petit déjeuner"

@@ -30,10 +30,19 @@ export class FormService {
     private createTourForm(){
 
         const type = new FormControl(null, Validators.required);
-        const attendants = new FormControl({value:['guide'], disabled: true}, Validators.required);
+        const attendants = new FormControl({value:null, disabled: true}, Validators.required);
 
         type.valueChanges.pipe(
-            tap((v) => v === GUIDED_TOUR ? attendants.enable() : attendants.disable())
+            tap((v) => { 
+                if(v === GUIDED_TOUR) {
+                    attendants.enable();
+                    attendants.setValue(['guide']);
+                }
+                else{
+                    attendants.disable();
+                    attendants.setValue(null);
+                }
+            })
         ).subscribe();
 
         return this.fb.group({

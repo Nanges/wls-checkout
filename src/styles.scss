@@ -13,7 +13,17 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$lio-checkout-primary: mat-palette($mat-orange, A400, A100, A700);
+$wls-palette: (
+    100: #f98222,
+    200: #fb961b,
+    contrast: (
+        100: $light-primary-text,
+        200: $dark-primary-text,
+    ),
+);
+
+//$lio-checkout-primary: mat-palette($mat-orange, A400, A100, A700);
+$lio-checkout-primary: mat-palette($wls-palette, 100, 200);
 $lio-checkout-accent: mat-palette($mat-teal, 500, 700, 900);
 
 // The warn palette is optional (defaults to red).
@@ -38,6 +48,45 @@ $lio-checkout-theme: mat-light-theme(
 
 /* You can add global styles to this file, and also import other style files */
 
+.wls {
+    $wls-orange: #f98222;
+
+    .mat-stepper-label-position-bottom .mat-horizontal-stepper-header,
+    .mat-vertical-stepper-header {
+        padding: 24px 24px 24px 20px;
+    }
+
+    .mat-step-icon {
+        border-radius: 50%;
+        height: 32px;
+        width: 32px;
+        flex-shrink: 0;
+        position: relative;
+    }
+
+    // form field
+    .mat-form-field-label,
+    .mat-hint {
+        color: $wls-orange;
+    }
+
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+        color: $wls-orange;
+    }
+
+    .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+        color: $wls-orange;
+    }
+
+    input:-internal-autofill-selected {
+        appearance: menulist-button;
+        background-color: transparent !important;
+        background-image: none !important;
+        color: -internal-light-dark(black, white) !important;
+    }
+}
+
+/**/
 html,
 body {
     height: 100%;
