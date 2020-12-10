@@ -79,7 +79,15 @@ export class FormService {
         const mealType = new FormControl(null, Validators.required);
 
         hostingType.valueChanges.pipe(
-            tap(v => v === CAMPING ? mealType.disable(): mealType.enable())
+            tap(v => {
+                if(v === CAMPING) {
+                    mealType.disable();
+                    mealType.setValue(null);
+                }
+                else {
+                    mealType.enable();
+                }
+            })
         ).subscribe();
 
         return this.fb.group({

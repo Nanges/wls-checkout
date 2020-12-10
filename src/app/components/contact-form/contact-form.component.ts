@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { LabelledValue, Settings } from 'src/app/models/settings';
 
 @Component({
@@ -71,8 +71,8 @@ export class ContactFormComponent {
 
     private getCountriesObservable(): Observable<LabelledValue[]>{
         return this.country.valueChanges.pipe(
-            startWith(''),
             map( v => typeof v === 'string' ? v : v.label),
+            filter(v => v.length >= 2),
             map((v:string) => this.filterCountries(v)
         ));
     }
