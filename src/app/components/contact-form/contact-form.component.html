@@ -1,6 +1,15 @@
 <div [formGroup]="form" class="pt-150">
     <div fxLayout="row wrap" class="form-row">
         <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50">
+            <label>Titre :</label>
+            <mat-radio-group class="app-inline-radio" aria-label="Select an option" formControlName="title">
+                <mat-radio-button value="miss" class="ml-100">Ms.</mat-radio-button>
+                <mat-radio-button value="mister" class="ml-100">Mr.</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+    <div fxLayout="row wrap" class="form-row">
+        <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50">
             <mat-form-field class="w-100" appearance="outline">
                 <mat-label appRequired>First name</mat-label>
                 <input matInput [formControl]="firstName" />

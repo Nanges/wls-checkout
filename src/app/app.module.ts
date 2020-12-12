@@ -9,14 +9,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { TourFormComponent } from './components/tour-form/tour-form.component';
+import { TravelFormComponent } from './components/travel-form/travel-form.component';
+import { WizardComponent } from './components/wizard/wizard.component';
 import { RequiredDirective } from './directives/required.directive';
 import { InitService } from './init.service';
-import { Settings } from './models/settings';
+import { Settings, Settings2 } from './models/settings';
 import { QueryFormResolver } from './resolvers/query-form.resolver';
+import { InitModule } from './shared/init/init.module';
 import { MaterialModule } from './shared/material/material.module';
 import { MultiCheckboxesModule } from './shared/multi-checkboxes/multi-checkboxes.module';
-import { WizardComponent } from './components/wizard/wizard.component';
-import { TravelFormComponent } from './components/travel-form/travel-form.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import { TravelFormComponent } from './components/travel-form/travel-form.compon
         FlexModule,
         ReactiveFormsModule,
         MultiCheckboxesModule,
-        HttpClientModule
+        HttpClientModule,
+        InitModule.forRoot({ settingType: Settings2 })
     ],
     providers: [
         QueryFormResolver,

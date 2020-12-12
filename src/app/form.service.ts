@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map, tap } from 'rxjs/operators';
-import { CAMPING, GUIDED_TOUR } from './constants';
+import { CAMPING, GUIDED_TOUR, NO_SUV_HOSTING, SUV } from './constants';
 import { Settings } from './models/settings';
 
 @Injectable({
@@ -28,32 +28,33 @@ export class FormService {
     }
 
     private createTourForm(){
-
-        const type = new FormControl(null, Validators.required);
+        const tourType = new FormControl(null, Validators.required);
         const attendants = new FormControl({value:null, disabled: true}, Validators.required);
+        const hostingType = new FormControl(null, Validators.required);
+        const mealType = new FormControl({value:null, disabled: true}, Validators.required);
+        const vehicleType = new FormControl(null, Validators.required);
 
-        type.valueChanges.pipe(
-            tap((v) => { 
-                if(v === GUIDED_TOUR) {
-                    attendants.enable();
-                    attendants.setValue(['guide']);
-                }
-                else{
-                    attendants.disable();
-                    attendants.setValue(null);
-                }
-            })
+        tourType.valueChanges.pipe(
+            tap(v => this.tourTypeChange(v, attendants))
+        ).subscribe();
+
+        hostingType.valueChanges.pipe(
+            tap(v => this.hostingTypeChange(v, mealType, vehicleType))
         ).subscribe();
 
         return this.fb.group({
             destinations:[null, Validators.required],
-            type,
+            tourType,
             attendants,
+            hostingType,
+            mealType,
+            vehicleType,
         });
     }
 
     private createContactForm(){
         const form =  this.fb.group({
+            title:[null, Validators.required],
             firstName: [null, Validators.required],
             lastName: [null, Validators.required],
             country: [null, [Validators.required, this.validateCountry(this.settings.data.countries)]],
@@ -75,34 +76,67 @@ export class FormService {
     }
 
     private createTravelForm(){
-        const hostingType = new FormControl(null, Validators.required);
-        const mealType = new FormControl(null, Validators.required);
+        // const hostingType = new FormControl(null, Validators.required);
+        // const mealType = new FormControl(null, Validators.required);
 
-        hostingType.valueChanges.pipe(
-            tap(v => {
-                if(v === CAMPING) {
-                    mealType.disable();
-                    mealType.setValue(null);
-                }
-                else {
-                    mealType.enable();
-                }
-            })
-        ).subscribe();
+        // hostingType.valueChanges.pipe(
+        //     tap(v => {
+        //         if(v === CAMPING) {
+        //             mealType.disable();
+        //             mealType.setValue(null);
+        //         }
+        //         else {
+        //             mealType.enable();
+        //         }
+        //     })
+        // ).subscribe();
 
         return this.fb.group({
-            hostingType,
-            mealType,
-            vehicleType: [null, Validators.required],
-            budgetPerPerson: [null, Validators.required],
-            safariExperiment: this.fb.array(
-                this.safariExperiments.map(() => [null, Validators.required])
-            ),
+            // hostingType,
+            // mealType,
+            // vehicleType: [null, Validators.required],
+            // budgetPerPerson: [null, Validators.required],
+            safariExperiment: [null, Validators.required],
             travelDescription:[null]
         });
     }
 
     private validateCountry(countryList: any[]){
         return (control: AbstractControl) => countryList.includes(control.value) || !control.value ? null : ({ country: true });
+    }
+
+    /**
+     * 
+     * @param value 
+     * @param attendants 
+     */
+    private tourTypeChange(value: string, attendants: FormControl){
+        if(value === GUIDED_TOUR) {
+            attendants.enable();
+            attendants.setValue(['guide']);
+        }
+        else{
+            attendants.disable();
+            attendants.setValue(null);
+        }
+    }
+
+    /**
+     * 
+     * @param value 
+     * @param mealType 
+     */
+    private hostingTypeChange(value: string, mealType: FormControl, vehicleType: FormControl){
+        if(value === CAMPING) {
+            mealType.disable();
+            mealType.setValue(null);
+        }
+        else {
+            mealType.enable();
+        }
+
+        if(NO_SUV_HOSTING.includes(value) && vehicleType.value === SUV){
+            vehicleType.setValue(null);
+        }
     }
 }
