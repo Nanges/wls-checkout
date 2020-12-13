@@ -32,7 +32,7 @@ export class FormService {
 
         return this.fb.group({
             destinations:[null, Validators.required],
-            safariExperiments: [null, Validators.required],
+            safariExperiment: [null, Validators.required],
             tourType,
             attendants,
         });
@@ -74,7 +74,6 @@ export class FormService {
             hostingType,
             mealType,
             vehicleType,
-            safariExperiment: [null, Validators.required],
             travelDescription:[null]
         });
     }
