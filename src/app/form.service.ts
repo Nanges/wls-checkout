@@ -14,6 +14,7 @@ export class FormService {
     constructor(private fb: FormBuilder, private settings: Settings) { 
         this.form = this.createForm();
     }
+    
     private createForm(){
         return this.fb.group({
             tour: this.createTourForm(),
@@ -25,9 +26,26 @@ export class FormService {
     private createTourForm(){
         const tourType = new FormControl(null, Validators.required);
         const attendants = new FormControl({value:null, disabled: true}, Validators.required);
+        const areExactDates = new FormControl(null, Validators.required);
+        const startDate = new FormControl({value: null, disabled: true}, Validators.required);
+        const endDate = new FormControl({value: null, disabled: true}, Validators.required);
     
         tourType.valueChanges.pipe(
             tap(v => this.tourTypeChange(v, attendants))
+        ).subscribe();
+
+        areExactDates.valueChanges.pipe(
+            tap(v => {
+                startDate.enable();
+                startDate.setValue(null, { emitEvent: false });
+                startDate.markAsPristine();
+                startDate.markAsUntouched();
+
+                endDate.enable();
+                endDate.setValue(null, { emitEvent: false });
+                endDate.markAsPristine();
+                endDate.markAsUntouched();
+            })
         ).subscribe();
 
         return this.fb.group({
@@ -35,6 +53,9 @@ export class FormService {
             safariExperiment: [null, Validators.required],
             tourType,
             attendants,
+            areExactDates,
+            startDate,
+            endDate
         });
     }
 

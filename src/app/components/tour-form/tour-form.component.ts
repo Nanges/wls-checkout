@@ -11,6 +11,9 @@ export class TourFormComponent {
     @Input()
     form: FormGroup;
 
+    @Input()
+    isMobile: boolean = true;
+
     get attendants(){
         return this.settings.data.attendants;
     }

@@ -17,6 +17,7 @@ import { Settings } from './models/settings';
 import { QueryFormResolver } from './resolvers/query-form.resolver';
 import { MaterialModule } from './shared/material/material.module';
 import { MultiCheckboxesModule } from './shared/multi-checkboxes/multi-checkboxes.module';
+import { DatesSelectorComponent } from './components/dates-selector/dates-selector.component';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { MultiCheckboxesModule } from './shared/multi-checkboxes/multi-checkboxe
         TourFormComponent,
         RequiredDirective,
         WizardComponent,
-        PreferencesFormComponent
+        PreferencesFormComponent,
+        DatesSelectorComponent
     ],
     imports: [
         BrowserModule,

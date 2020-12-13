@@ -37,4 +37,8 @@ export class WizardComponent {
         this.isMobile$ = observer.asObservable().pipe(map(() => observer.isActive('lt-md')));
         this.form = this.formService.form;
     }
+
+    confirm(form){
+        console.log(form.value);
+    }
 }

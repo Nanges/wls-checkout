@@ -30,4 +30,12 @@
                 [value]="attendant.value">{{ attendant.label }}</mat-checkbox>
         </div>
     </div>
+    <div fxLayout="row wrap" class="form-row">
+        <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50">
+            <app-dates-selector [isMobile]="isMobile" [form]="form"></app-dates-selector>
+        </div>
+        <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50">
+            
+        </div>
+    </div>
 </div>

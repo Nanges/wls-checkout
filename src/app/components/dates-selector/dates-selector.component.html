@@ -1,0 +1,30 @@
+<ng-container [formGroup]="form">
+    <label class="d-block mb-50">Connaissez-vous les dates exactes ?</label>
+    <mat-radio-group class="d-flex mb-100" aria-label="Select an option" formControlName="areExactDates">
+        <mat-radio-button [value]="true">Oui</mat-radio-button>
+        <mat-radio-button [value]="false" class="ml-100">Non</mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field class="w-100" appearance="outline">
+        <span class="stretched-link"></span>
+        <mat-label>Début du voyage</mat-label>
+        <mat-datepicker-toggle matPrefix [for]="startPicker"></mat-datepicker-toggle>
+        <input matInput [matDatepicker]="startPicker" [formControl]="startDate"/>
+        <mat-datepicker #startPicker
+            [touchUi]="isMobile" 
+            [startView]="startView$ | async"
+            (monthSelected)="chosenMonthHandler($event, startDate, startPicker)"
+        >
+        </mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Fin du voyage</mat-label>
+        <mat-datepicker-toggle matPrefix [for]="endPicker"></mat-datepicker-toggle>
+        <input matInput [matDatepicker]="endPicker" [formControl]="endDate" />
+        <mat-datepicker #endPicker
+            [touchUi]="isMobile"
+            [startView]="startView$ | async"
+            (monthSelected)="chosenMonthHandler($event, endDate, endPicker)"
+        >
+        </mat-datepicker>
+    </mat-form-field>
+</ng-container>

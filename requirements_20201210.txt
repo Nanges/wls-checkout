@@ -1,7 +1,7 @@
 - Votre voyage
  > Destinations > Quelle expérience
  > Type de tour > Accompagnateur
- > Dates > Budget (non)
+ > Dates > Budget (oui/non -> encoder)
 - Information de contact
 - Repas & Hébergement
  > Type d'hebergement
