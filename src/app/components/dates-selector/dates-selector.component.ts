@@ -1,7 +1,7 @@
 import { Platform } from '@angular/cdk/platform';
 import { Component, Inject, Injectable, Input, OnInit, Optional } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { DateAdapter, MAT_DATE_LOCALE, NativeDateAdapter } from '@angular/material/core';
+import { FormControl, FormGroup, FormGroupDirective, NgForm } from '@angular/forms';
+import { DateAdapter, ErrorStateMatcher, MAT_DATE_LOCALE, NativeDateAdapter } from '@angular/material/core';
 import { MatCalendarView, MatDatepicker } from '@angular/material/datepicker';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -9,9 +9,6 @@ import { map, startWith } from 'rxjs/operators';
 @Injectable()
 export class AppDateAdapter extends NativeDateAdapter {
 
-    /**
-     *
-     */
     constructor(
         @Optional() @Inject(MAT_DATE_LOCALE) matDateLocale: string,
         platform: Platform,
@@ -26,9 +23,17 @@ export class AppDateAdapter extends NativeDateAdapter {
     }
 }
 
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+    isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+        const isSubmitted = form && form.submitted;
+        return !!(control && control.invalid && (control.dirty || isSubmitted));
+    }
+}
+
 @Component({
     selector: 'app-dates-selector',
     templateUrl: './dates-selector.component.html',
+    styleUrls: ['./dates-selector.component.scss'],
     providers: [
         { provide: DateAdapter, useClass: AppDateAdapter },
     ]
@@ -60,6 +65,8 @@ export class DatesSelectorComponent implements OnInit {
     get useBase(){
         return this.areExactDates?.value;
     }
+
+    errorStateMatcher = new MyErrorStateMatcher();
 
     constructor() {}
 
