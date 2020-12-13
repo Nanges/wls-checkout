@@ -38,13 +38,13 @@ export class FormService {
             tap(v => {
                 startDate.enable();
                 startDate.setValue(null, { emitEvent: false });
-                startDate.markAsPristine();
-                startDate.markAsUntouched();
+                // startDate.markAsPristine();
+                // startDate.markAsUntouched();
 
                 endDate.enable();
                 endDate.setValue(null, { emitEvent: false });
-                endDate.markAsPristine();
-                endDate.markAsUntouched();
+                // endDate.markAsPristine();
+                // endDate.markAsUntouched();
             })
         ).subscribe();
 

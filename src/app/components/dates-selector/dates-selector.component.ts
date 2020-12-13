@@ -6,6 +6,17 @@ import { MatCalendarView, MatDatepicker } from '@angular/material/datepicker';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
+
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+    isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+        const isSubmitted = form && form.submitted;
+        console.log(isSubmitted);
+        return !!(control && control.invalid && (control.dirty || isSubmitted));
+    }
+}
+
+
 @Injectable()
 export class AppDateAdapter extends NativeDateAdapter {
 
@@ -20,13 +31,6 @@ export class AppDateAdapter extends NativeDateAdapter {
         return this.selector.useBase === true
             ? super.format(date, displayFormat)
             : `${date.getMonth() + 1}/${date.getFullYear()}`;
-    }
-}
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-    isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-        const isSubmitted = form && form.submitted;
-        return !!(control && control.invalid && (control.dirty || isSubmitted));
     }
 }
 
@@ -66,7 +70,7 @@ export class DatesSelectorComponent implements OnInit {
         return this.areExactDates?.value;
     }
 
-    errorStateMatcher = new MyErrorStateMatcher();
+    errorMatcher = new MyErrorStateMatcher();
 
     constructor() {}
 
