@@ -7,6 +7,13 @@
                 class="d-block mb-50"
                 [value]="destination.value">{{ destination.label }}</mat-checkbox>
         </div>
+        <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50" formControlName='safariExperiment' appMultiCheckboxes>
+            <label class="app-label">Quelle expérience de safari recherchez-vous ?</label>
+            <mat-checkbox *ngFor="let option of safariExperiments" 
+                appCheckboxItem
+                class="d-block mb-50"
+                [value]="option.value">{{ option.label }}</mat-checkbox>
+        </div>
     </div>
     <div fxLayout="row wrap" class="form-row">
         <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50">
@@ -21,34 +28,6 @@
                 appCheckboxItem
                 class="d-block mb-50"
                 [value]="attendant.value">{{ attendant.label }}</mat-checkbox>
-        </div>
-    </div>
-    <div fxLayout="row wrap" class="form-row">
-        <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50">
-            <label class="app-label">Type d'hébergement souhaité</label>
-            <mat-radio-group aria-label="Type d'hébergement souhaité" formControlName='hostingType'>
-                <mat-radio-button 
-                    *ngFor="let option of hostingTypeOptions" 
-                    [value]="option.value" class="d-block mb-50">{{ option.label }}</mat-radio-button>
-            </mat-radio-group>
-        </div>
-        <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50">
-            <label class="app-label">Repas</label>
-            <mat-radio-group aria-label="Repas" formControlName='mealType'>
-                <mat-radio-button 
-                    *ngFor="let option of mealOptions" 
-                    [value]="option.value" class="d-block mb-50">{{ option.label }}</mat-radio-button>
-            </mat-radio-group>
-        </div>
-    </div>
-    <div fxLayout="row wrap" class="form-row">
-        <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50">
-            <label class="app-label">Type de véhicule de safari</label>
-            <mat-radio-group aria-label="Type d'hébergement souhaité" formControlName='vehicleType'>
-                <mat-radio-button 
-                    *ngFor="let option of vehicleOptions$ | async" 
-                    [value]="option.value" class="d-block mb-50" [disabled]="option.disabled">{{ option.label }}</mat-radio-button>
-            </mat-radio-group>
         </div>
     </div>
 </div>

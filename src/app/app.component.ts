@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Settings2 } from './models/settings';
 
 @Component({
     selector: 'app-root',
@@ -9,7 +8,5 @@ export class AppComponent {
     /**
      *
      */
-    constructor(setting: Settings2) {
-        console.log(setting);
-    }
+    constructor() {}
 }

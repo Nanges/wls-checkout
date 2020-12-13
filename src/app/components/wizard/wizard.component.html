@@ -15,18 +15,11 @@
                         <button mat-raised-button color="primary" type="button" [disabled]="contactForm.invalid" matStepperNext>Next</button>
                     </div>
                 </mat-step>
-                <mat-step label="Votre voyage" [stepControl]="travelForm">
-                    <app-travel-form [form]="travelForm"></app-travel-form>
+                <mat-step label="Votre voyage" [stepControl]="preferencesForm">
+                    <app-preferences-form [form]="preferencesForm"></app-preferences-form>
                     <div class="d-flex justify-content-between">
                         <button mat-button type="button" color="accent" matStepperPrevious>Back</button>
-                        <button mat-raised-button color="primary" type="button" [disabled]="travelForm.invalid" matStepperNext>Next</button>
-                    </div>
-                </mat-step>
-                <mat-step label="Votre voyage" [stepControl]="travelForm">
-                    <app-travel-form [form]="travelForm"></app-travel-form>
-                    <div class="d-flex justify-content-between">
-                        <button mat-button type="button" color="accent" matStepperPrevious>Back</button>
-                        <button mat-raised-button color="primary" type="button" [disabled]="travelForm.invalid" matStepperNext>Next</button>
+                        <button mat-raised-button color="primary" type="button" [disabled]="preferencesForm.invalid" matStepperNext>Next</button>
                     </div>
                 </mat-step>
                 <mat-step label="Confirmation">
@@ -49,14 +42,14 @@
             <app-contact-form [form]="contactForm"></app-contact-form>
             <div class="d-flex justify-content-between">
                 <button mat-button type="button" color="accent" matStepperPrevious>Back</button>
-                <button mat-raised-button color="primary" type="button" [disabled]="travelForm.invalid" matStepperNext>Next</button>
+                <button mat-raised-button color="primary" type="button" [disabled]="contactForm.invalid" matStepperNext>Next</button>
             </div>
         </mat-step>
-        <mat-step label="Votre voyage" [stepControl]="travelForm">
-            <app-travel-form [form]="travelForm"></app-travel-form>
+        <mat-step label="Votre voyage" [stepControl]="preferencesForm">
+            <app-preferences-form [form]="preferencesForm"></app-preferences-form>
             <div class="d-flex justify-content-between">
                 <button mat-button type="button" color="accent" matStepperPrevious>Back</button>
-                <button mat-raised-button color="primary" type="button" [disabled]="travelForm.invalid" matStepperNext>Next</button>
+                <button mat-raised-button color="primary" type="button" [disabled]="preferencesForm.invalid" matStepperNext>Next</button>
             </div>
         </mat-step>
         <mat-step label="Confirmation">

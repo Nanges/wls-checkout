@@ -14,41 +14,27 @@ export class FormService {
     constructor(private fb: FormBuilder, private settings: Settings) { 
         this.form = this.createForm();
     }
-
-    private get safariExperiments(){
-        return this.settings.data.safariExperiments;
-    }
-
     private createForm(){
         return this.fb.group({
             tour: this.createTourForm(),
             contact: this.createContactForm(),
-            travel: this.createTravelForm()
+            preferences: this.createPreferencesForm()
         });
     }
 
     private createTourForm(){
         const tourType = new FormControl(null, Validators.required);
         const attendants = new FormControl({value:null, disabled: true}, Validators.required);
-        const hostingType = new FormControl(null, Validators.required);
-        const mealType = new FormControl({value:null, disabled: true}, Validators.required);
-        const vehicleType = new FormControl(null, Validators.required);
-
+    
         tourType.valueChanges.pipe(
             tap(v => this.tourTypeChange(v, attendants))
         ).subscribe();
 
-        hostingType.valueChanges.pipe(
-            tap(v => this.hostingTypeChange(v, mealType, vehicleType))
-        ).subscribe();
-
         return this.fb.group({
             destinations:[null, Validators.required],
+            safariExperiments: [null, Validators.required],
             tourType,
             attendants,
-            hostingType,
-            mealType,
-            vehicleType,
         });
     }
 
@@ -75,27 +61,19 @@ export class FormService {
         return form;
     }
 
-    private createTravelForm(){
-        // const hostingType = new FormControl(null, Validators.required);
-        // const mealType = new FormControl(null, Validators.required);
+    private createPreferencesForm(){
+        const hostingType = new FormControl(null, Validators.required);
+        const mealType = new FormControl({value:null, disabled: true}, Validators.required);
+        const vehicleType = new FormControl(null, Validators.required);
 
-        // hostingType.valueChanges.pipe(
-        //     tap(v => {
-        //         if(v === CAMPING) {
-        //             mealType.disable();
-        //             mealType.setValue(null);
-        //         }
-        //         else {
-        //             mealType.enable();
-        //         }
-        //     })
-        // ).subscribe();
+        hostingType.valueChanges.pipe(
+            tap(v => this.hostingTypeChange(v, mealType, vehicleType))
+        ).subscribe();
 
         return this.fb.group({
-            // hostingType,
-            // mealType,
-            // vehicleType: [null, Validators.required],
-            // budgetPerPerson: [null, Validators.required],
+            hostingType,
+            mealType,
+            vehicleType,
             safariExperiment: [null, Validators.required],
             travelDescription:[null]
         });

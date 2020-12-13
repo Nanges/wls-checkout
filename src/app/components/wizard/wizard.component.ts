@@ -23,8 +23,8 @@ export class WizardComponent {
         return this.form.get('tour') as FormGroup;
     }
 
-    get travelForm(){
-        return this.form.get('travel') as FormGroup;
+    get preferencesForm(){
+        return this.form.get('preferences') as FormGroup;
     }
 
     /**
