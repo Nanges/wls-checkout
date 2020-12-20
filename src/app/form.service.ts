@@ -26,25 +26,25 @@ export class FormService {
     private createTourForm(){
         const tourType = new FormControl(null, Validators.required);
         const attendants = new FormControl({value:null, disabled: true}, Validators.required);
-        const areExactDates = new FormControl(null, Validators.required);
-        const startDate = new FormControl({value: null, disabled: true}, Validators.required);
+        const isDuration = new FormControl(null, Validators.required);
+        const startDate = new FormControl({value: null }, Validators.required);
         const endDate = new FormControl({value: null, disabled: true}, Validators.required);
+        const duration = new FormControl({value: null, disabled: true}, [Validators.required, Validators.min(1)]);
        
         tourType.valueChanges.pipe(
             tap(v => this.tourTypeChange(v, attendants))
         ).subscribe();
 
-        areExactDates.valueChanges.pipe(
+        isDuration.valueChanges.pipe(
             tap(v => {
-                startDate.enable();
-                startDate.setValue(null, { emitEvent: false });
-                startDate.markAsPristine();
-                startDate.markAsUntouched();
-
-                endDate.enable();
-                endDate.setValue(null, { emitEvent: false });
-                endDate.markAsPristine();
-                endDate.markAsUntouched();
+                if(v){
+                    endDate.enable();
+                    this.disableAndReset(duration);
+                }
+                else{
+                    duration.enable();
+                    this.disableAndReset(endDate);
+                }
             })
         ).subscribe();
 
@@ -53,9 +53,10 @@ export class FormService {
             safariExperiment: [null],
             tourType,
             attendants,
-            areExactDates,
+            isDuration,
             startDate,
-            endDate
+            endDate,
+            duration
         });
     }
 
@@ -136,5 +137,12 @@ export class FormService {
         if(NO_SUV_HOSTING.includes(value) && vehicleType.value === SUV){
             vehicleType.setValue(null);
         }
+    }
+
+    private disableAndReset(control: AbstractControl){
+        control.disable();
+        control.setValue(null, { emitEvent: false });
+        control.markAsPristine();
+        control.markAsUntouched();
     }
 }

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Settings } from 'src/app/models/settings';
 
 @Component({
@@ -28,10 +28,6 @@ export class TourFormComponent {
 
     get safariExperiments(){
         return this.settings.data.safariExperiments;
-    }
-
-    get budget(){
-        return this.form.get('budget') as FormControl;
     }
 
     constructor(private settings: Settings) {}
