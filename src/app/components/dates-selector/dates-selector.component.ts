@@ -3,6 +3,15 @@ import { FormControl, FormGroup, FormGroupDirective, NgForm } from '@angular/for
 import { ErrorStateMatcher } from '@angular/material/core';
 
 
+export function today(){
+    const today = new Date();
+        today.setHours(0);
+        today.setMinutes(0);
+        today.setSeconds(0);
+        today.setUTCMilliseconds(0);
+    return today;
+}
+
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -41,11 +50,22 @@ export class DatesSelectorComponent implements OnInit {
 
     errorMatcher = new MyErrorStateMatcher();
 
+    toDateFilter:(d:Date) => boolean;
+
     constructor() {}
 
     ngOnInit(): void {
         this._endDate = this.form.get('endDate') as FormControl;
         this._startDate = this.form.get('startDate') as FormControl;
         this._duration = this.form.get('duration') as FormControl;
+
+        this.toDateFilter = (d: Date) => {
+            const minDate = this._startDate.value || today();
+            return d > minDate;
+        }
+    }
+
+    fromDateFilter(d: Date) {
+        return d >= today();
     }
 }

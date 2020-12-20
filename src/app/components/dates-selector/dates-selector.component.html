@@ -1,13 +1,13 @@
 <ng-container [formGroup]="form">
-    <mat-form-field class="w-100" appearance="outline">
+    <mat-form-field class="w-100" appearance="outline" (click)="startPicker.open()">
         <mat-label>Début du voyage</mat-label>
         <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
         <input matInput 
             [matDatepicker]="startPicker"
             [formControl]="startDate"
+            [matDatepickerFilter]="fromDateFilter"
             [errorStateMatcher]="errorMatcher"
-            readonly
-            (click)="startPicker.open()"/>
+            readonly />
         <mat-datepicker #startPicker [touchUi]="isMobile"></mat-datepicker>
     </mat-form-field>
     <div>
@@ -24,6 +24,7 @@
             [matDatepicker]="endPicker"
             [formControl]="endDate" 
             [errorStateMatcher]="errorMatcher"
+            [matDatepickerFilter]="toDateFilter"
             readonly
             (click)="endPicker.open()"/>
         <mat-datepicker #endPicker [touchUi]="isMobile"></mat-datepicker>

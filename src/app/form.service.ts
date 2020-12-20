@@ -35,6 +35,14 @@ export class FormService {
             tap(v => this.tourTypeChange(v, attendants))
         ).subscribe();
 
+        startDate.valueChanges.pipe(
+            tap((d:Date) => {
+                if(endDate.value && endDate.value < d){
+                    endDate.reset(null);
+                }
+            })
+        ).subscribe();
+
         isDuration.valueChanges.pipe(
             tap(v => {
                 if(v){
@@ -141,8 +149,6 @@ export class FormService {
 
     private disableAndReset(control: AbstractControl){
         control.disable();
-        control.setValue(null, { emitEvent: false });
-        control.markAsPristine();
-        control.markAsUntouched();
+        control.reset(null, { emitEvent: false});
     }
 }
