@@ -29,7 +29,7 @@ export class FormService {
         const areExactDates = new FormControl(null, Validators.required);
         const startDate = new FormControl({value: null, disabled: true}, Validators.required);
         const endDate = new FormControl({value: null, disabled: true}, Validators.required);
-    
+       
         tourType.valueChanges.pipe(
             tap(v => this.tourTypeChange(v, attendants))
         ).subscribe();
@@ -38,19 +38,19 @@ export class FormService {
             tap(v => {
                 startDate.enable();
                 startDate.setValue(null, { emitEvent: false });
-                // startDate.markAsPristine();
-                // startDate.markAsUntouched();
+                startDate.markAsPristine();
+                startDate.markAsUntouched();
 
                 endDate.enable();
                 endDate.setValue(null, { emitEvent: false });
-                // endDate.markAsPristine();
-                // endDate.markAsUntouched();
+                endDate.markAsPristine();
+                endDate.markAsUntouched();
             })
         ).subscribe();
 
         return this.fb.group({
             destinations:[null, Validators.required],
-            safariExperiment: [null, Validators.required],
+            safariExperiment: [null],
             tourType,
             attendants,
             areExactDates,
