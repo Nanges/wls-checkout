@@ -61,23 +61,8 @@ export class ContactFormComponent {
     constructor(private settings: Settings) {
         this.adultNumberOptions = [...Array.from({length: 9}).map((_, i) => i + 1), '> 10'];
         this.childrenNumberOptions = [...Array.from({length: 10}).map((_, i) => i), '> 10'];
-        this.countries = this.sortCountries();
+        this.countries = this.settings.data.countries;
     }
 
-    private sortCountries(){
-        const western = ['be','fr','lu','nl','de','ch','ca'];
-        return this.settings.data.countries.sort((a, b) => {
-            const iA = western.indexOf(a.value);
-            const iB = western.indexOf(b.value);
-
-            if(iA > -1 && iB === -1){
-                return -1;
-            }
-            else if(iA > -1 && iB > -1){
-                return iA < iB ? -1 : 1;
-            }
-
-            return a.label < b.label ? -1 : 1;
-        });
-    }
+    
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, LOCALE_ID } from '@angular/core';
 import { switchMap, tap } from 'rxjs/operators';
-import { Settings } from './models/settings';
+import { LabelledValue, Settings } from './models/settings';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,10 @@ export class InitService {
             }),
             switchMap(() => this.http.get(`./assets/countries/${this.localeId}/countries.json`)),
             tap((cs:any[]) => {
-                this._settings.data.countries = cs.map(c => ({value: c.alpha2, label: c.name}))
+                const western = ['be','fr','lu','nl','de','ch','ca'];
+                this._settings.data.countries = cs
+                    .map(c => ({value: c.alpha2, label: c.name}))
+                    .sort((a, b) => this.sortCountries(a, b, western));
             })
         ).toPromise()
     }
@@ -32,5 +35,19 @@ export class InitService {
     private _settings: Settings;
     get settings(){
         return this._settings;
+    }
+
+    private sortCountries(a: LabelledValue, b: LabelledValue, western: string[]){
+        const iA = western.indexOf(a.value);
+        const iB = western.indexOf(b.value);
+
+        if(iA > -1 && iB === -1){
+            return -1;
+        }
+        else if(iA > -1 && iB > -1){
+            return iA < iB ? -1 : 1;
+        }
+
+        return a.label < b.label ? -1 : 1;
     }
 }

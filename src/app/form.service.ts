@@ -27,7 +27,7 @@ export class FormService {
         const tourType = new FormControl(null, Validators.required);
         const attendants = new FormControl({value:null, disabled: true}, Validators.required);
         const isDuration = new FormControl(null, Validators.required);
-        const startDate = new FormControl({value: null }, Validators.required);
+        const startDate = new FormControl(null, Validators.required);
         const endDate = new FormControl({value: null, disabled: true}, Validators.required);
         const duration = new FormControl({value: null, disabled: true}, [Validators.required, Validators.min(1)]);
        
