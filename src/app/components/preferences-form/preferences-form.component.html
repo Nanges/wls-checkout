@@ -22,7 +22,7 @@
             <label class="app-label">Type de véhicule de safari</label>
             <mat-radio-group aria-label="Type d'hébergement souhaité" formControlName='vehicleType' appVehicleTypes #vt="vehicleTypes">
                 <mat-radio-button 
-                    *ngFor="let option of vt.items$ | async" 
+                    *ngFor="let option of vt.items | vehicleTypesFilter:form.get('hostingType').value" 
                     [value]="option.value" class="d-block mb-50" [disabled]="option.disabled">{{ option.label }}</mat-radio-button>
             </mat-radio-group>
         </div>
