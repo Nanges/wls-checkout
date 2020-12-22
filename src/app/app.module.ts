@@ -22,6 +22,9 @@ import { DestinationsDirective } from './shared/directives/destinations.directiv
 import { SafariExperimentsDirective } from './shared/directives/safari-experiments.directive';
 import { TourTypesDirective } from './shared/directives/tour-types.directive';
 import { AttendantsDirective } from './shared/directives/attendants.directive';
+import { HostingTypesDirective } from './shared/directives/hosting-types.directive';
+import { MealTypesDirective } from './shared/directives/meal-types.directive';
+import { VehicleTypesDirective } from './shared/directives/vehicle-types.directive';
 
 @NgModule({
     declarations: [
@@ -35,7 +38,10 @@ import { AttendantsDirective } from './shared/directives/attendants.directive';
         DestinationsDirective,
         SafariExperimentsDirective,
         TourTypesDirective,
-        AttendantsDirective
+        AttendantsDirective,
+        HostingTypesDirective,
+        MealTypesDirective,
+        VehicleTypesDirective
     ],
     imports: [
         BrowserModule,
