@@ -3,7 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { APP_CHECKBOX_ITEM_ACCESSOR, CheckboxItemAccessor } from './accessors';
 
 @Directive({
-  selector: '[appMultiCheckboxes]',
+  selector: '[appMultiCheckboxes], app-multi-checkboxes',
   providers:[{
         provide: NG_VALUE_ACCESSOR,
         useExisting: forwardRef(() => MultiCheckboxesDirective),

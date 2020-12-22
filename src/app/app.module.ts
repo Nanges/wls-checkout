@@ -18,6 +18,10 @@ import { QueryFormResolver } from './resolvers/query-form.resolver';
 import { MaterialModule } from './shared/material/material.module';
 import { MultiCheckboxesModule } from './shared/multi-checkboxes/multi-checkboxes.module';
 import { DatesSelectorComponent } from './components/dates-selector/dates-selector.component';
+import { DestinationsDirective } from './shared/directives/destinations.directive';
+import { SafariExperimentsDirective } from './shared/directives/safari-experiments.directive';
+import { TourTypesDirective } from './shared/directives/tour-types.directive';
+import { AttendantsDirective } from './shared/directives/attendants.directive';
 
 @NgModule({
     declarations: [
@@ -27,7 +31,11 @@ import { DatesSelectorComponent } from './components/dates-selector/dates-select
         RequiredDirective,
         WizardComponent,
         PreferencesFormComponent,
-        DatesSelectorComponent
+        DatesSelectorComponent,
+        DestinationsDirective,
+        SafariExperimentsDirective,
+        TourTypesDirective,
+        AttendantsDirective
     ],
     imports: [
         BrowserModule,
