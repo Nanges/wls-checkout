@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map, tap } from 'rxjs/operators';
-import { CAMPING, GUIDED_TOUR, NO_SUV_HOSTING, SUV } from './constants';
-import { Settings } from './models/settings';
+import { CAMPING, GUIDED_TOUR, NO_SUV_HOSTING, SUV } from '../../../constants';
+import { Settings } from '../../../models/settings';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class FormService {
 
     readonly form: FormGroup;
@@ -31,7 +29,7 @@ export class FormService {
         const end_date = new FormControl({value: null, disabled: true}, Validators.required);
         const duration = new FormControl({value: null, disabled: true}, [Validators.required, Validators.min(1)]);
         const destinations = new FormControl(null, Validators.required);
-        const safari_experiments = new FormControl(null, Validators.required);
+        const safari_experiments = new FormControl(null);
        
         tour_type.valueChanges.pipe(
             tap(v => this.tourTypeChange(v, attendants))

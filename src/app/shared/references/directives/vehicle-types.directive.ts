@@ -1,5 +1,5 @@
 import { Directive } from '@angular/core';
-import { FormService } from 'src/app/form.service';
+import { FormService } from 'src/app/features/wizard/services/form.service';
 import { Settings } from 'src/app/models/settings';
 
 @Directive({

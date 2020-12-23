@@ -3,12 +3,13 @@ import { MediaObserver } from '@angular/flex-layout';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { FormService } from 'src/app/form.service';
+import { FormService } from 'src/app/features/wizard/services/form.service';
 
 @Component({
-  selector: 'app-wizard',
-  templateUrl: './wizard.component.html',
-  styleUrls: ['./wizard.component.scss']
+    selector: 'app-wizard',
+    templateUrl: './wizard.component.html',
+    styleUrls: ['./wizard.component.scss'],
+    providers:[FormService]
 })
 export class WizardComponent {
 
