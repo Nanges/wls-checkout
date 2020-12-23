@@ -48,12 +48,12 @@ export class FormService {
         is_duration.valueChanges.pipe(
             tap(v => {
                 if(v){
-                    end_date.enable();
-                    this.disableAndReset(duration);
-                }
-                else{
                     duration.enable();
                     this.disableAndReset(end_date);
+                }
+                else{
+                    end_date.enable();
+                    this.disableAndReset(duration);
                 }
             })
         ).subscribe();

@@ -48,6 +48,11 @@ export class DatesSelectorComponent implements OnInit {
         return this._duration;
     }
 
+    private _isDuration: FormControl;
+    get isDuration(){
+        return this._isDuration;
+    }
+
     errorMatcher = new MyErrorStateMatcher();
 
     toDateFilter:(d:Date) => boolean;
@@ -58,6 +63,7 @@ export class DatesSelectorComponent implements OnInit {
         this._endDate = this.form.get('end_date') as FormControl;
         this._startDate = this.form.get('start_date') as FormControl;
         this._duration = this.form.get('duration') as FormControl;
+        this._isDuration = this.form.get('is_duration') as FormControl;
 
         this.toDateFilter = (d: Date) => {
             const minDate = this._startDate.value || today();
