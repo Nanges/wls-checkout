@@ -12,7 +12,6 @@ import { DatesSelectorComponent } from './components/dates-selector/dates-select
 import { PreferencesFormComponent } from './components/preferences-form/preferences-form.component';
 import { TourFormComponent } from './components/tour-form/tour-form.component';
 import { WizardComponent } from './components/wizard/wizard.component';
-import { RequiredDirective } from './directives/required.directive';
 import { InitService } from './init.service';
 import { Settings } from './models/settings';
 import { QueryFormResolver } from './resolvers/query-form.resolver';
@@ -20,6 +19,7 @@ import { AttendantsDirective } from './shared/directives/attendants.directive';
 import { DestinationsDirective } from './shared/directives/destinations.directive';
 import { HostingTypesDirective } from './shared/directives/hosting-types.directive';
 import { MealTypesDirective } from './shared/directives/meal-types.directive';
+import { RequiredDirective } from './shared/directives/required.directive';
 import { SafariExperimentsDirective } from './shared/directives/safari-experiments.directive';
 import { TourTypesDirective } from './shared/directives/tour-types.directive';
 import { VehicleTypesDirective } from './shared/directives/vehicle-types.directive';
