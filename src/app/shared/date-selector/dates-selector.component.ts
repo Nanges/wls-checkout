@@ -60,10 +60,10 @@ export class DatesSelectorComponent implements OnInit {
     constructor() {}
 
     ngOnInit(): void {
-        this._endDate = this.form.get('end_date') as FormControl;
-        this._startDate = this.form.get('start_date') as FormControl;
+        this._endDate = this.form.get('endDate') as FormControl;
+        this._startDate = this.form.get('startDate') as FormControl;
         this._duration = this.form.get('duration') as FormControl;
-        this._isDuration = this.form.get('is_duration') as FormControl;
+        this._isDuration = this.form.get('isDuration') as FormControl;
 
         this.toDateFilter = (d: Date) => {
             const minDate = this._startDate.value || today();

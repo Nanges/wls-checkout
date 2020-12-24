@@ -30,19 +30,19 @@ export class UrlBuilderComponent {
 
     private createForm(){
 
-        const is_duration = new FormControl(null);
-        const start_date = new FormControl(null);
-        const end_date = new FormControl({value: null, disabled: true});
+        const isDuration = new FormControl(null);
+        const startDate = new FormControl(null);
+        const endDate = new FormControl({value: null, disabled: true});
         const duration = new FormControl({value: null, disabled: true}, Validators.min(1));
 
-        is_duration.valueChanges.pipe(
+        isDuration.valueChanges.pipe(
             tap(v => {
                 if(v){
                     duration.enable();
-                    this.disableAndReset(end_date);
+                    this.disableAndReset(endDate);
                 }
                 else{
-                    end_date.enable();
+                    endDate.enable();
                     this.disableAndReset(duration);
                 }
             })
@@ -51,16 +51,16 @@ export class UrlBuilderComponent {
 
         return this.fb.group({
             destinations: [null],
-            safari_experiments: [null],
-            tour_type: [null],
+            safariExperiments: [null],
+            tourType: [null],
             attendants: [null],
-            is_duration,
-            start_date,
-            end_date,
+            isDuration,
+            startDate,
+            endDate,
             duration,
-            hosting_type: [null],
-            meal_type: [null],
-            vehicle_type: [null],
+            hostingType: [null],
+            mealType: [null],
+            vehicleType: [null],
         })
     }
 
@@ -70,9 +70,9 @@ export class UrlBuilderComponent {
     }
 
     resetDates(){
-        this.form.get('is_duration').reset(null);
+        this.form.get('isDuration').reset(null);
         this.form.get('duration').reset(null);
-        this.form.get('start_date').reset(null);
-        this.form.get('end_date').reset(null);
+        this.form.get('startDate').reset(null);
+        this.form.get('endDate').reset(null);
     }
 }

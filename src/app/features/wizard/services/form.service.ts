@@ -22,35 +22,35 @@ export class FormService {
     }
 
     private createTourForm(){
-        const tour_type = new FormControl(null, Validators.required);
+        const tourType = new FormControl(null, Validators.required);
         const attendants = new FormControl({value:null, disabled: true}, Validators.required);
-        const is_duration = new FormControl(null, Validators.required);
-        const start_date = new FormControl(null, Validators.required);
-        const end_date = new FormControl({value: null, disabled: true}, Validators.required);
+        const isDuration = new FormControl(null, Validators.required);
+        const startDate = new FormControl(null, Validators.required);
+        const endDate = new FormControl({value: null, disabled: true}, Validators.required);
         const duration = new FormControl({value: null, disabled: true}, [Validators.required, Validators.min(1)]);
         const destinations = new FormControl(null, Validators.required);
-        const safari_experiments = new FormControl(null);
+        const safariExperiments = new FormControl(null);
        
-        tour_type.valueChanges.pipe(
+        tourType.valueChanges.pipe(
             tap(v => this.tourTypeChange(v, attendants))
         ).subscribe();
 
-        start_date.valueChanges.pipe(
+        startDate.valueChanges.pipe(
             tap((d:Date) => {
-                if(end_date.value && end_date.value < d){
-                    end_date.reset(null);
+                if(endDate.value && endDate.value < d){
+                    endDate.reset(null);
                 }
             })
         ).subscribe();
 
-        is_duration.valueChanges.pipe(
+        isDuration.valueChanges.pipe(
             tap(v => {
                 if(v){
                     duration.enable();
-                    this.disableAndReset(end_date);
+                    this.disableAndReset(endDate);
                 }
                 else{
-                    end_date.enable();
+                    endDate.enable();
                     this.disableAndReset(duration);
                 }
             })
@@ -58,12 +58,12 @@ export class FormService {
 
         return this.fb.group({
             destinations,
-            safari_experiments,
-            tour_type,
+            safariExperiments,
+            tourType,
             attendants,
-            is_duration,
-            start_date,
-            end_date,
+            isDuration,
+            startDate,
+            endDate,
             duration
         });
     }
@@ -92,18 +92,18 @@ export class FormService {
     }
 
     private createPreferencesForm(){
-        const hosting_type = new FormControl(null, Validators.required);
-        const meal_type = new FormControl({value:null, disabled: true}, Validators.required);
-        const vehicle_type = new FormControl(null, Validators.required);
+        const hostingType = new FormControl(null, Validators.required);
+        const mealType = new FormControl({value:null, disabled: true}, Validators.required);
+        const vehicleType = new FormControl(null, Validators.required);
 
-        hosting_type.valueChanges.pipe(
-            tap(v => this.hostingTypeChange(v, meal_type, vehicle_type))
+        hostingType.valueChanges.pipe(
+            tap(v => this.hostingTypeChange(v, mealType, vehicleType))
         ).subscribe();
 
         return this.fb.group({
-            hosting_type,
-            meal_type,
-            vehicle_type,
+            hostingType,
+            mealType,
+            vehicleType,
             travelDescription:[null]
         });
     }
