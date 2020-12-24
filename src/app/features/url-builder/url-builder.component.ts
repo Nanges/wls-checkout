@@ -69,4 +69,11 @@ export class UrlBuilderComponent {
         control.disable();
         control.reset(null, { emitEvent: false});
     }
+
+    resetDates(){
+        this.form.get('is_duration').reset(null);
+        this.form.get('duration').reset(null);
+        this.form.get('start_date').reset(null);
+        this.form.get('end_date').reset(null);
+    }
 }
