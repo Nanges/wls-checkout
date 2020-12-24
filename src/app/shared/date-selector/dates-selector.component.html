@@ -13,11 +13,11 @@
     <div>
         <label class="d-block mb-50">Connaissez-vous la date de fin exacte ?</label>
         <mat-radio-group class="d-flex mb-100" aria-label="Select an option" formControlName="is_duration">
-            <mat-radio-button [value]="false">Oui</mat-radio-button>
-            <mat-radio-button [value]="true" class="ml-100">Non</mat-radio-button>
+            <mat-radio-button [value]="0">Oui</mat-radio-button>
+            <mat-radio-button [value]="1" class="ml-100">Non</mat-radio-button>
         </mat-radio-group>
     </div>
-    <mat-form-field class="w-100" appearance="outline" *ngIf="isDuration.value === false">
+    <mat-form-field class="w-100" appearance="outline" *ngIf="isDuration.value === 0">
         <mat-label>Fin du voyage</mat-label>
         <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
         <input matInput 
@@ -29,7 +29,7 @@
             (click)="endPicker.open()"/>
         <mat-datepicker #endPicker [touchUi]="isMobile"></mat-datepicker>
     </mat-form-field>
-    <mat-form-field class="w-100" appearance="outline" *ngIf="isDuration.value === true">
+    <mat-form-field class="w-100" appearance="outline" *ngIf="isDuration.value === 1">
         <mat-label>Nombre de jours</mat-label>
         <input matInput [formControl]="duration" type="number" name="durration" min="1"/>
         <mat-error *ngIf="duration.hasError('required')">Duration is <strong>required</strong></mat-error>

@@ -31,7 +31,6 @@ import { WizardComponent } from './wizard.component';
         FlexModule,
         MultiCheckboxesModule,
         DateSelectorModule,
-        ReferencesModule,
     ],
 })
 export class WizardModule { }

@@ -1,5 +1,4 @@
 import { Directive } from '@angular/core';
-import { FormService } from 'src/app/features/wizard/services/form.service';
 import { Settings } from 'src/app/models/settings';
 
 @Directive({
@@ -12,6 +11,6 @@ export class VehicleTypesDirective {
         return this.settings.data.vehicles;
     }
 
-    constructor(private settings: Settings, private formService: FormService) {
+    constructor(private settings: Settings) {
     }
 }
