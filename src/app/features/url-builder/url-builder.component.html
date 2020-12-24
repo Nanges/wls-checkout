@@ -1,7 +1,11 @@
 <div class="container" [formGroup]="form">
     <mat-card>
         <mat-card-title>Url builder<span class="app-optional ml-50">V1.0</span></mat-card-title>
-        <div fxLayout="row wrap" class="form-row">
+        <div class="my-50 d-flex justify-content-end">
+            <button mat-raised-button color="primary">Copy url</button>
+            <button mat-raised-button color="warn" class="ml-50" (click)="form.reset()">Reset all form</button>
+        </div>
+        <div fxLayout="row wrap" class="form-row mt-250">
             <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50">
                 <app-multi-checkboxes formControlName='destinations' appDestinations #d="destinations">
                     <label class="app-label">Destinations</label>

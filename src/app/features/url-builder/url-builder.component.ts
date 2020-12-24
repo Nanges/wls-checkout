@@ -20,8 +20,7 @@ export class UrlBuilderComponent {
         this.form = this.createForm();
         this.form.valueChanges.subscribe(v=> {
             this.router.navigate([], {
-                queryParams:v ,
-                replaceUrl: true
+                queryParams:v,
             })
         });
 
