@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map, tap } from 'rxjs/operators';
-import { CAMPING, GUIDED_TOUR, NO_SUV_HOSTING, SUV } from '../../../constants';
-import { Settings } from '../../../models/settings';
+import { CAMPING, GUIDED_TOUR, NO_SUV_HOSTING, SUV } from '../constants';
+import { Settings } from '../models/settings';
 
 @Injectable()
 export class FormService {

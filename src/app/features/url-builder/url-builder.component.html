@@ -16,7 +16,7 @@
                 Reset all form
             </button>
         </div>
-        <div fxLayout="row wrap" class="form-row mt-250">
+        <div fxLayout="row wrap" class="form-row mt-250" formGroupName="tour">
             <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50">
                 <app-multi-checkboxes
                     formControlName="destinations"
@@ -52,13 +52,13 @@
                 </app-multi-checkboxes>
             </div>
         </div>
-        <div fxLayout="row wrap" class="form-row">
+        <div fxLayout="row wrap" class="form-row" formGroupName="tour">
             <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50">
                 <label class="app-label"
                     >Type de tour<button
                         class="ml-100"
                         mat-raised-button
-                        (click)="form.get('tourType').reset(null)"
+                        (click)="form.get('tour.tourType').reset(null)"
                     >
                         reset
                     </button></label
@@ -107,15 +107,15 @@
                 >
                 <app-dates-selector
                     [isMobile]="false"
-                    [form]="form"
+                    [form]="tourForm"
                 ></app-dates-selector>
             </div>
-            <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50">
+            <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50" formGroupName="preferences">
                 <label class="app-label"
                     >Type d'hébergement souhaité<button
                         class="ml-100"
                         mat-raised-button
-                        (click)="form.get('hostingType').reset(null)"
+                        (click)="form.get('preferences.hostingType').reset(null)"
                     >
                         reset
                     </button></label
@@ -135,13 +135,13 @@
                 </mat-radio-group>
             </div>
         </div>
-        <div fxLayout="row wrap" class="form-row">
+        <div fxLayout="row wrap" class="form-row" formGroupName="preferences">
             <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50">
                 <label class="app-label"
                     >Type de véhicule de safari<button
                         class="ml-100"
                         mat-raised-button
-                        (click)="form.get('vehicleType').reset(null)"
+                        (click)="form.get('preferences.vehicleType').reset(null)"
                     >
                         reset
                     </button></label
@@ -153,7 +153,7 @@
                     #vt="vehicleTypes"
                 >
                     <mat-radio-button
-                        *ngFor="let option of vt.items"
+                        *ngFor="let option of vt.items | vehicleTypesFilter:form.get('preferences.hostingType').value"
                         [value]="option.value"
                         class="d-block mb-50"
                         [disabled]="option.disabled"

@@ -3,7 +3,7 @@ import { MediaObserver } from '@angular/flex-layout';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { FormService } from 'src/app/features/wizard/services/form.service';
+import { FormService } from 'src/app/services/form.service';
 
 @Component({
     selector: 'app-wizard',
