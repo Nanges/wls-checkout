@@ -1,30 +1,31 @@
 import { Component } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FormService } from 'src/app/services/form.service';
+import { FormUrlMapperHelper } from 'src/app/utils/form-url-mapper-helper';
 
 @Component({
     selector: 'app-wizard',
     templateUrl: './wizard.component.html',
     styleUrls: ['./wizard.component.scss'],
-    providers:[FormService]
+    providers: [FormService],
 })
 export class WizardComponent {
-
     readonly isMobile$: Observable<any>;
     readonly form: FormGroup;
 
-    get contactForm(){
+    get contactForm() {
         return this.form.get('contact') as FormGroup;
     }
 
-    get tourForm(){
+    get tourForm() {
         return this.form.get('tour') as FormGroup;
     }
 
-    get preferencesForm(){
+    get preferencesForm() {
         return this.form.get('preferences') as FormGroup;
     }
 
@@ -32,14 +33,23 @@ export class WizardComponent {
      *
      */
     constructor(
-        observer: MediaObserver, 
+        observer: MediaObserver,
         private formService: FormService,
+        private route: ActivatedRoute
     ) {
-        this.isMobile$ = observer.asObservable().pipe(map(() => observer.isActive('lt-md')));
+        this.isMobile$ = observer
+            .asObservable()
+            .pipe(map(() => observer.isActive('lt-md')));
         this.form = this.formService.form;
+
+        FormUrlMapperHelper.mapToForm(
+            this.form,
+            route.snapshot.queryParamMap,
+            true
+        );
     }
 
-    confirm(form){
+    confirm(form) {
         console.log(form.value);
     }
 }

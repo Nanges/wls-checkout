@@ -27,6 +27,11 @@ export const FORM_URL_MAP: FormUrlMappingRule[] = [
         formUrlMapper: new DateMapper(),
     },
     {
+        queryKey: 'isdur',
+        formKey: 'tour.isDuration',
+        formUrlMapper: new NumberMapper(),
+    },
+    {
         queryKey: 'end',
         formKey: 'tour.endDate',
         formUrlMapper: new DateMapper(),
@@ -34,11 +39,6 @@ export const FORM_URL_MAP: FormUrlMappingRule[] = [
     {
         queryKey: 'dur',
         formKey: 'tour.duration',
-    },
-    {
-        queryKey: 'isdur',
-        formKey: 'tour.isDuration',
-        formUrlMapper: new NumberMapper(),
     },
     {
         queryKey: 'hosting',
