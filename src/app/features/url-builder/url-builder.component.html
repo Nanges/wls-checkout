@@ -5,8 +5,15 @@
                 >V1.0</span
             ></mat-card-title
         >
+        <textarea class="w-100">{{ url$ | async }}</textarea>
         <div class="my-50 d-flex justify-content-end">
-            <button mat-raised-button color="primary">Copy url</button>
+            <button
+                mat-raised-button
+                color="primary"
+                [cdkCopyToClipboard]="url$ | async"
+            >
+                Copy url
+            </button>
             <button
                 mat-raised-button
                 color="warn"
@@ -110,12 +117,19 @@
                     [form]="tourForm"
                 ></app-dates-selector>
             </div>
-            <div class="form-cell" fxFlex="100" fxFlex.gt-xs="50" formGroupName="preferences">
+            <div
+                class="form-cell"
+                fxFlex="100"
+                fxFlex.gt-xs="50"
+                formGroupName="preferences"
+            >
                 <label class="app-label"
                     >Type d'hébergement souhaité<button
                         class="ml-100"
                         mat-raised-button
-                        (click)="form.get('preferences.hostingType').reset(null)"
+                        (click)="
+                            form.get('preferences.hostingType').reset(null)
+                        "
                     >
                         reset
                     </button></label
@@ -141,7 +155,9 @@
                     >Type de véhicule de safari<button
                         class="ml-100"
                         mat-raised-button
-                        (click)="form.get('preferences.vehicleType').reset(null)"
+                        (click)="
+                            form.get('preferences.vehicleType').reset(null)
+                        "
                     >
                         reset
                     </button></label
@@ -153,7 +169,11 @@
                     #vt="vehicleTypes"
                 >
                     <mat-radio-button
-                        *ngFor="let option of vt.items | vehicleTypesFilter:form.get('preferences.hostingType').value"
+                        *ngFor="
+                            let option of vt.items
+                                | vehicleTypesFilter
+                                    : form.get('preferences.hostingType').value
+                        "
                         [value]="option.value"
                         class="d-block mb-50"
                         [disabled]="option.disabled"

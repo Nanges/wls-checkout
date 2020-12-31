@@ -1,3 +1,4 @@
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import { NgModule } from '@angular/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,7 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
-    exports:[
+    exports: [
         MatStepperModule,
         MatIconModule,
         MatCardModule,
@@ -29,7 +30,8 @@ import { MatStepperModule } from '@angular/material/stepper';
         MatChipsModule,
         MatNativeDateModule,
         MatDatepickerModule,
-        MatDividerModule
-    ]
+        MatDividerModule,
+        ClipboardModule,
+    ],
 })
 export class MaterialModule {}

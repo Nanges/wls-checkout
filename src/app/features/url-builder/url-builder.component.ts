@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { FormService } from 'src/app/services/form.service';
 import { FormUrlMapperHelper } from 'src/app/utils/form-url-mapper-helper';
 
@@ -19,6 +21,8 @@ export class UrlBuilderComponent {
         return this.form.get('tour') as FormGroup;
     }
 
+    readonly url$: Observable<string>;
+
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -29,11 +33,25 @@ export class UrlBuilderComponent {
             this.route.snapshot.queryParamMap
         );
 
-        this.form.valueChanges.subscribe((v) => {
+        const queryParams$ = this.form.valueChanges.pipe(
+            map((v) => FormUrlMapperHelper.mapToUrl(this.form))
+        );
+
+        queryParams$.subscribe((queryParams) => {
             this.router.navigate([], {
-                queryParams: FormUrlMapperHelper.mapToUrl(this.form),
+                queryParams,
             });
         });
+
+        this.url$ = queryParams$.pipe(
+            map((queryParams) => this.createExternalUrl(queryParams)),
+            startWith(this.createExternalUrl(this.route.snapshot.queryParams))
+        );
+    }
+
+    private createExternalUrl(queryParams: any) {
+        const qpStr = this.router.createUrlTree(['/'], { queryParams });
+        return `${window.location.origin}${qpStr}`;
     }
 
     resetDates() {
