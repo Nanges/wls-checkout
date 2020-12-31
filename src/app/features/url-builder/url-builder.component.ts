@@ -24,6 +24,11 @@ export class UrlBuilderComponent {
         private route: ActivatedRoute,
         private formService: FormService
     ) {
+        FormUrlMapperHelper.mapToForm(
+            this.form,
+            this.route.snapshot.queryParamMap
+        );
+
         this.form.valueChanges.subscribe((v) => {
             this.router.navigate([], {
                 queryParams: FormUrlMapperHelper.mapToUrl(this.form),

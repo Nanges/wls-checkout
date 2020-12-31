@@ -1,4 +1,5 @@
 import { FormGroup } from '@angular/forms';
+import { ParamMap } from '@angular/router';
 import { FORM_URL_MAP } from '../models/form-url-map';
 
 export class FormUrlMapperHelper {
@@ -13,5 +14,27 @@ export class FormUrlMapperHelper {
 
             return obj;
         }, {});
+    }
+
+    static mapToForm(
+        form: FormGroup,
+        queryParamMap: ParamMap,
+        disableAfterFilling: boolean = false
+    ) {
+        FORM_URL_MAP.forEach((r) => {
+            if (queryParamMap.has(r.queryKey)) {
+                const rawValue = queryParamMap.get(r.queryKey);
+                const value = r.formUrlMapper
+                    ? r.formUrlMapper.fromQuery(rawValue)
+                    : rawValue;
+
+                const control = form.get(r.formKey);
+                control.setValue(value);
+
+                if (disableAfterFilling) {
+                    control.disable();
+                }
+            }
+        });
     }
 }

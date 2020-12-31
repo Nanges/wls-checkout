@@ -22,3 +22,13 @@ export class ArrayMapper implements FormUrlMapper<string, string[]> {
         return value.length > 0 ? value.join(',') : null;
     }
 }
+
+export class NumberMapper implements FormUrlMapper<string, number> {
+    fromQuery(value: string): number {
+        return +value;
+    }
+
+    toQuery(value: number): string {
+        return value.toString();
+    }
+}

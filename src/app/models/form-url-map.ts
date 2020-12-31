@@ -1,5 +1,5 @@
 import { FormUrlMappingRule } from './form-url-item';
-import { ArrayMapper, DateMapper } from './form-url-mappers';
+import { ArrayMapper, DateMapper, NumberMapper } from './form-url-mappers';
 
 export const FORM_URL_MAP: FormUrlMappingRule[] = [
     {
@@ -38,6 +38,7 @@ export const FORM_URL_MAP: FormUrlMappingRule[] = [
     {
         queryKey: 'isdur',
         formKey: 'tour.isDuration',
+        formUrlMapper: new NumberMapper(),
     },
     {
         queryKey: 'hosting',
