@@ -19,6 +19,6 @@ export class ArrayMapper implements FormUrlMapper<string, string[]> {
     }
 
     toQuery(value: string[]): string {
-        return value.join(',');
+        return value.length > 0 ? value.join(',') : null;
     }
 }

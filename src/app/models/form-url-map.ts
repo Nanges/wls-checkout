@@ -36,6 +36,10 @@ export const FORM_URL_MAP: FormUrlMappingRule[] = [
         formKey: 'tour.duration',
     },
     {
+        queryKey: 'isdur',
+        formKey: 'tour.isDuration',
+    },
+    {
         queryKey: 'hosting',
         formKey: 'preferences.hostingType',
     },
