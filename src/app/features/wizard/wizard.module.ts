@@ -12,6 +12,12 @@ import { PreferencesFormComponent } from './components/preferences-form/preferen
 import { TourFormComponent } from './components/tour-form/tour-form.component';
 import { WizardRoutingModule } from './wizard-routing.module';
 import { WizardComponent } from './wizard.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+import { DetailRowComponent } from './components/detail-row/detail-row.component';
+import { CountryPipe } from './pipes/country.pipe';
+import { HostingTypePipe } from './pipes/hosting-type.pipe';
+import { MealTypePipe } from './pipes/meal-type.pipe';
+import { VehicleTypePipe } from './pipes/vehicle-type.pipe';
 
 @NgModule({
     declarations: [
@@ -19,6 +25,12 @@ import { WizardComponent } from './wizard.component';
         TourFormComponent,
         WizardComponent,
         PreferencesFormComponent,
+        ConfirmComponent,
+        DetailRowComponent,
+        CountryPipe,
+        HostingTypePipe,
+        MealTypePipe,
+        VehicleTypePipe,
     ],
     imports: [
         CommonModule,

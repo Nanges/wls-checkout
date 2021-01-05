@@ -1,0 +1,28 @@
+<div class="mb-250">
+    <h3>Destination & type de tour</h3>
+    <pre>{{ tour | json }}</pre>
+    <h3>Informations de contact</h3>
+    <app-detail-row label="Titre, nom & prénom">
+        <ng-container [ngSwitch]="contact.title">
+            <span *ngSwitchCase="'mr'">monsieur</span>
+            <span *ngSwitchCase="'ms'">madame</span>
+        </ng-container>
+        <span class="ml-50">{{ contact.lastName }}&nbsp;{{ contact.firstName }}</span>
+    </app-detail-row>
+    <app-detail-row label="Email">{{ contact.email }}</app-detail-row>
+    <app-detail-row label="Mobile">{{ contact.mobile }}</app-detail-row>
+    <app-detail-row label="Pays">{{ contact.country | country }}</app-detail-row>
+    <app-detail-row label="Nombre d'adulte">{{ contact.adultNumber }}</app-detail-row>
+    <app-detail-row label="Nombre d'enfant">{{ contact.childrenNumber }}</app-detail-row>
+    <app-detail-row label="Enfants de moins de 4 ans">
+        <ng-container [ngSwitch]="contact.has4YearsKids">
+            <span *ngSwitchCase="true">oui</span>
+            <span *ngSwitchCase="false">non</span>
+        </ng-container>
+    </app-detail-row>
+    <h3>Préférences</h3>
+    <app-detail-row label="Type d'hébergement souhaité">{{ preferences.hostingType | hostingType }}</app-detail-row>
+    <app-detail-row label="Repas">{{ preferences.mealType | mealType }}</app-detail-row>
+    <app-detail-row label="Type de véhicule de safari">{{ preferences.vehicleType | vehicleType }}</app-detail-row>
+    <app-detail-row label="Votre itinéraire de safari et vos envies ou contraintes spécifiques">{{ preferences.travelDescription || '-' }}</app-detail-row>
+</div>

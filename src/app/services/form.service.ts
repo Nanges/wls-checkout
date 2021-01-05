@@ -4,7 +4,7 @@ import {
     FormBuilder,
     FormControl,
     FormGroup,
-    Validators,
+    Validators
 } from '@angular/forms';
 import { map, tap } from 'rxjs/operators';
 import { CAMPING, GUIDED_TOUR, NO_SUV_HOSTING, SUV } from '../constants';
@@ -143,7 +143,7 @@ export class FormService {
 
     private validateCountry(countryList: any[]) {
         return (control: AbstractControl) =>
-            countryList.includes(control.value) || !control.value
+            countryList.find(e => e.value === control.value) !== null
                 ? null
                 : { country: true };
     }
