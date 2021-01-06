@@ -84,6 +84,10 @@ $lio-checkout-theme: mat-light-theme(
         background-image: none !important;
         color: -internal-light-dark(black, white) !important;
     }
+
+    .h3 {
+        color: $wls-orange;
+    }
 }
 
 /**/

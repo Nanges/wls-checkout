@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,28 +6,26 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './confirm.component.html',
   styleUrls: ['./confirm.component.scss']
 })
-export class ConfirmComponent implements OnInit {
+export class ConfirmComponent {
 
     @Input()
     form: FormGroup;
 
-    private _rawValue:any;
+    private get rawValue(){
+        return this.form.getRawValue();
+    }
     
     get contact(){
-        return this._rawValue.contact;
+        return this.rawValue.contact;
     }
 
     get tour(){
-        return this._rawValue.tour;
+        return this.rawValue.tour;
     }
 
     get preferences(){
-        return this._rawValue.preferences;
+        return this.rawValue.preferences;
     }
 
     constructor() { }
-
-    ngOnInit(): void {
-        this._rawValue = this.form.getRawValue();
-    }
 }

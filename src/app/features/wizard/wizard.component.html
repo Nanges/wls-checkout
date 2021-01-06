@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="confirm(form)">
     <div class="container">
         <mat-card *ngIf="!(isMobile$ | async)">
-            <mat-horizontal-stepper linear labelPosition="bottom" [selectedIndex]="3">
+            <mat-horizontal-stepper linear labelPosition="bottom">
                 <mat-step label="Destination & type de tour" [stepControl]="tourForm">
                     <app-tour-form [form]="tourForm" [isMobile]="false"></app-tour-form>
                     <div class="d-flex justify-content-end">

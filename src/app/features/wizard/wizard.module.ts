@@ -18,6 +18,10 @@ import { CountryPipe } from './pipes/country.pipe';
 import { HostingTypePipe } from './pipes/hosting-type.pipe';
 import { MealTypePipe } from './pipes/meal-type.pipe';
 import { VehicleTypePipe } from './pipes/vehicle-type.pipe';
+import { DestinationsPipe } from './pipes/destinations.pipe';
+import { SafariExperimentsPipe } from './pipes/safari-experiments.pipe';
+import { TourTypePipe } from './pipes/tour-type.pipe';
+import { AttendantsPipe } from './pipes/attendants.pipe';
 
 @NgModule({
     declarations: [
@@ -31,6 +35,10 @@ import { VehicleTypePipe } from './pipes/vehicle-type.pipe';
         HostingTypePipe,
         MealTypePipe,
         VehicleTypePipe,
+        DestinationsPipe,
+        SafariExperimentsPipe,
+        TourTypePipe,
+        AttendantsPipe,
     ],
     imports: [
         CommonModule,
